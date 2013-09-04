@@ -18,4 +18,6 @@ Ruby Core Module Extensions (in the spirit of lab419/core)
 
 ## Hash
 
-Coming Soon
+```ruby
+  {a: 42, b: 43}.only :a, :c # ===> {a: 42}
+```
