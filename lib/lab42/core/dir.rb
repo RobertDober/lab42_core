@@ -1,10 +1,13 @@
 class << Dir
-  def files glob_para
+  def files glob_para, &blk
     glob( glob_para ).map do |f|
       full = File.join pwd, f
-      require 'pry'
       next if File.directory? full
       [f, full]
-    end.compact
+    end
+      .compact
+      .tap do | result |
+        result.each(&blk) if blk
+      end
   end
 end
