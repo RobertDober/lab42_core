@@ -4,8 +4,8 @@ require 'lab42/core/fn/enumerable'
 require 'lab42/core/fn/enumerator/lazy'
 
 class Object
-  def fn
-    # There can only be one (per instance)
-    @__lab42_core_fn__ ||= Lab42::Core::Fn.new self
+  __lab42_core_fn__ = nil
+  define_method :fn do
+    __lab42_core_fn__ ||= Lab42::Core::Fn.new self
   end
 end # class Object
