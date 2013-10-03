@@ -11,4 +11,11 @@ class Object
   rescue
     Lab42::Core::Fn.new self
   end
+
+  def fm
+    @__lab42_core_fm__ ||= Lab42::Core::Fm.new self
+  # But caching in frozen objects is not an option
+  rescue
+    Lab42::Core::Fn.new self
+  end
 end # class Object

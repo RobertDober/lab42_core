@@ -8,34 +8,38 @@ describe Object do
   let(:lazy){range.lazy}
   let(:range){0..9}
   let(:expected){[*1..10]}
+  let(:sum){45}
 
   def expect_result for_exp: required
     expect( for_exp ).to eq( expected )
   end
-  context :map, :wip do
+  context :map do
     it "for Enumerable" do
-      expect_result for_exp: range.map( :succ )
+      expect_result for_exp: enum.map( :succ )
     end
     it "for Array" do
       expect_result for_exp: ary.map( :succ )
     end
-    
+    it "for Enumerator::Lazy" do
+      expect_result for_exp: lazy.map( :succ ).to_a
+    end
+
   end # context :map
 
-  it "can be used as a block for arrays" do
-    expect( [*source].map Integer.fn.cksum ).to eq( [9,1,2,3] )
+  context :inject do
+    
+    it "for Enumerable" do
+      expect( enum.reduce Fixnum.fm.+ ).to eq( sum )
+      expect( enum.inject 0, Fixnum.fm.+ ).to eq( sum )
+    end
+
+    it "for Array" do
+      expect( ary.reduce Fixnum.fm.+ ).to eq( sum )
+      expect( ary.inject 0, Fixnum.fm.+ ).to eq( sum )
+    end
+
   end
 
-  it "can be used as a block for enumerables" do
-    expect( source.map Integer.fn.cksum ).to eq( [9,1,2,3] )
-  end
 
-  it "can be used for enumerators" do
-    expect( source.to_enum.map( Integer.fn.cksum ).to_a ).to eq( [9,1,2,3] )
-  end
-
-  it "can be used for lazy enumerators" do
-    expect( source.lazy.map( Integer.fn.cksum ).to_a ).to eq( [9,1,2,3] )
-  end
 end # describe Object
 
