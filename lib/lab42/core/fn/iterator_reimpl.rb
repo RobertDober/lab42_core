@@ -2,11 +2,18 @@ module Lab42
   module Core
     module IteratorReimpl
       def self.included into
+        # TODO: Try to DRY
         into.module_eval do
           alias_method :__lab42_core_iterator_map__, :map
           def map behavior=nil, &blk
             __lab42_core_iterator_map__(&(behavior||blk))
           end
+          alias_method :__lab42_core_iterator_select__, :select
+          def select behavior=nil, &blk
+            __lab42_core_iterator_select__(&(behavior||blk))
+          end
+          alias_method :filter, :select
+
           alias_method :__lab42_core_iterator_reduce__, :reduce
           def reduce behavior=nil, &blk
             if Symbol === behavior
@@ -23,6 +30,9 @@ module Lab42
             else
               __lab42_core_iterator_inject__(value, &(behavior||blk))
             end
+          end
+
+          def filter *args, &blk
           end
         end
       end
