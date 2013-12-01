@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Module, :wip do
+describe Module do
 
   before do
     $count = 0 
