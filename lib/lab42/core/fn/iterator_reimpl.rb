@@ -24,7 +24,9 @@ module Lab42
           end
 
           alias_method :__lab42_core_iterator_inject__, :inject
-          def inject value, behavior=nil, &blk
+          def inject *args, &blk
+            return reduce(&blk) if args.empty?
+            value, behavior = args
             if Symbol === behavior
               __lab42_core_iterator_inject__ value, behavior
             else
