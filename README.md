@@ -68,7 +68,7 @@ If you hesitate to use this all, have a look into Kernel#const_lambda
 
 ```ruby
   f = Array.fm.push :next
-  [[],[1].map( f ) # ---> [[:next], [1, :next]]
+  [[],[1]].map( f ) # ---> [[:next], [1, :next]]
 
   a=[]
   f = a.fn.push :first
