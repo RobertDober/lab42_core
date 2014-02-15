@@ -1,8 +1,20 @@
 module Lab42
   module Core
     module IteratorReimpl
+
+      
+      def self.decompose_args args, block
+        raise ArgumentError, 'too many arguments' if args.size + ( block ? 1 : 0 ) > 2
+        return [args,block] if block 
+        b, a = args.partition{|x| behavior? x}
+        behave = b.pop
+        a = b if a.empty?
+        raise ArgumentError, "No behavior specified" unless behave
+        return [a,behave]
+      end
+
       def self.included into
-        # TODO: Try to DRY
+        _self = self
         into.module_eval do
           alias_method :__lab42_core_iterator_map__, :map
           def map behavior=nil, &blk
@@ -14,28 +26,20 @@ module Lab42
           end
           alias_method :filter, :select
 
-          alias_method :__lab42_core_iterator_reduce__, :reduce
-          def reduce behavior=nil, &blk
-            if Symbol === behavior
-              __lab42_core_iterator_reduce__ behavior
-            else
-              __lab42_core_iterator_reduce__(&(behavior||blk))
-            end
-          end
-
           alias_method :__lab42_core_iterator_inject__, :inject
-          def inject *args, &blk
-            return reduce(&blk) if args.empty?
-            value, behavior = args
-            if Symbol === behavior
-              __lab42_core_iterator_inject__ value, behavior
-            else
-              __lab42_core_iterator_inject__(value, &(behavior||blk))
-            end
+          define_method :inject  do |*args, &blk|
+            args, behavior = _self.decompose_args args, blk
+            __lab42_core_iterator_inject__( *args, &behavior )
           end
+          alias_method :reduce, :inject
 
           def filter *args, &blk
           end
+        end
+
+        private
+        def self.behavior? x
+          Symbol === x || Proc === x || Method === x
         end
       end
     end
