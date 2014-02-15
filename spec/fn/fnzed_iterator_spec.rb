@@ -30,11 +30,13 @@ describe Object do
     
     it "for Enumerable" do
       expect( enum.reduce Fixnum.fm.+ ).to eq( sum )
+      expect( enum.reduce 0, Fixnum.fm.+ ).to eq( sum )
       expect( enum.inject 0, Fixnum.fm.+ ).to eq( sum )
     end
 
     it "for Array" do
       expect( ary.reduce Fixnum.fm.+ ).to eq( sum )
+      expect( ary.reduce 0, Fixnum.fm.+ ).to eq( sum )
       expect( ary.inject 0, Fixnum.fm.+ ).to eq( sum )
     end
 

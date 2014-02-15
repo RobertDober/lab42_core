@@ -2,6 +2,7 @@
 
 export home_dir=$(pwd)
 export session_name=Lab42Core
+export console_command=pry
 
 function main
 {
@@ -18,6 +19,7 @@ function main
         new_window 'vi spec'
         open_vi spec ':colorscheme solarized'
 
+        new_console_window
 }
 
 source ~/bin/tmux/tmux-commands.zsh
