@@ -28,5 +28,18 @@ describe Lab42::Core::OpenObject do
       end
     end
   end # context 'Relationship with Hash'
+
+  context 'Hashy behavior' do 
+    it 'accesses with []' do
+      expect( subject[:a] ).to eq( 42 )
+    end
+    it 'has the same size semantics' do
+      expect( subject.size ).to eq( 2 )
+    end
+    it 'cannot assign though' do
+      expect( ->{ subject[:a]=45} ).to raise_error( NoMethodError )
+    end
+    
+  end # context 'Hashy behavior'
   
 end # describe Lab42::Core::OpenObject

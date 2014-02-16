@@ -1,12 +1,16 @@
 require 'lab42/core/fn'
 require 'forwarder'
+require 'lab42/core/open_object/transformations'
+
 module Lab42
   module Core
     class OpenObject
-      extend Forwarder
       include Enumerable
 
-      forward_all :keys, :values, to: :@data
+      include Transformations
+
+      extend Forwarder
+      forward_all :[], :keys, :length, :size, :values, to: :@data
 
       def == other
         self.class === other && to_hash == other.to_hash
