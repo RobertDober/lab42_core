@@ -4,6 +4,8 @@ export home_dir=$(pwd)
 export session_name=Lab42Core
 export console_command=pry
 
+export after_window_open='rvm use @Lab42Core --create'
+
 function main
 {
         new_session
@@ -20,6 +22,7 @@ function main
         open_vi spec ':colorscheme solarized'
 
         new_console_window
+
 }
 
 source ~/bin/tmux/tmux-commands.zsh
