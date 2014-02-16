@@ -14,7 +14,7 @@ describe Lab42::Core::OpenObject do
         expect( d ).to receive(:msg).with(described_class.new(b: 43)).ordered
         subject.each{ |x| d.msg x }
       end
-      it 'will thus map too', :wip do
+      it 'will thus map too' do
         expect( subject.map(:values) ).to eq([[42], [43]])
       end
     end # context 'each and friends'
