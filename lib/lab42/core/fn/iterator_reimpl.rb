@@ -18,6 +18,7 @@ module Lab42
         into.module_eval do
           alias_method :__lab42_core_iterator_map__, :map
           def map behavior=nil, &blk
+            # p [behavior,blk]
             __lab42_core_iterator_map__(&(behavior||blk))
           end
           alias_method :__lab42_core_iterator_select__, :select
