@@ -74,3 +74,9 @@ If you hesitate to use this all, have a look into Kernel#const_lambda
   f = a.fn.push :first
   f.(1) # a ---> [:first, 1]
 ```
+
+## OpenObject
+
+Immutable Open Objects
+
+They are described in detail [here](dox/OpenObject.md) 
