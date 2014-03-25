@@ -3,6 +3,9 @@ module Lab42
     module IteratorReimpl
 
       
+      # behavior is either the block or the last argument that qualifies as a behavior.
+      # The arguments are either all non behavior arguments or all but the last argument
+      # if all arguments are behaviors.
       def self.decompose_args args, block
         raise ArgumentError, 'too many arguments' if args.size + ( block ? 1 : 0 ) > 2
         return [args,block] if block 
@@ -39,6 +42,9 @@ module Lab42
         end
 
         private
+        # TODO:
+        # Maybe refactor this into a prominent place and express the concept
+        # of behavior in the README.
         def self.behavior? x
           Symbol === x || Proc === x || Method === x
         end
