@@ -11,6 +11,10 @@ module Enumerable
       result << ele
     end
   end
+
+  def take_until &blk
+    take_while( &(blk.not) )
+  end
 end
 
 class Array

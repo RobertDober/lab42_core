@@ -3,6 +3,10 @@ module Lab42
     module IteratorReimpl
 
       
+      # TODO:
+      # Implement the concept of behabior and argument decomposition for behavioral methods
+      # (Higher Order  Methods in some way), to a support class/module usable throughout the
+      # Lab42/core gem.
       # behavior is either the block or the last argument that qualifies as a behavior.
       # The arguments are either all non behavior arguments or all but the last argument
       # if all arguments are behaviors.
