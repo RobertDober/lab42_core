@@ -1,4 +1,3 @@
-require 'lab42/core/open_object/hash'
 class ::Hash
 
   def to_open_object

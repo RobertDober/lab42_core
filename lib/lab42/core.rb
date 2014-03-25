@@ -1,7 +1,1 @@
-require 'lab42/core/dir'
-require 'lab42/core/proc'
-require 'lab42/core/enumerable'
-require 'lab42/core/hash'
-require 'lab42/core/kernel'
-require 'lab42/core/object'
-require 'lab42/core/module'
+require 'lab42/core/behavior'

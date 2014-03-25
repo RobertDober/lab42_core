@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'lab42/core/enumerable'
 
 describe Enumerable do
   

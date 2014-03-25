@@ -1,6 +1,7 @@
 require 'spec_helper'
+require 'lab42/core/kernel'
 
-describe Kernel do
+describe Lab42::Behavior do
   context :sendmsg do 
     let(:source){[*0..8]}
     let(:target){[*1..9]}
@@ -15,6 +16,12 @@ describe Kernel do
       expect(
         sendmsg(:+, 2).(40)
       ).to eq( 42 )
+    end
+
+    it 'is mixed in from Behavior' do
+      expect(
+        described_class.sendmsg(:< , 10).(1)
+      ).to eq( true )
     end
   end # context :sendmsg
 end # describe Kernel
