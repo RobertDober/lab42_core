@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Lab42::Behavior do
+describe Lab42::Core::Behavior do
   context :can_be_behavior do 
     it 'returns true for a Proc' do
       expect( described_class.can_be_behavior? ->{} ).to eq( true )

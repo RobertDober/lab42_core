@@ -1,7 +1,7 @@
 require 'spec_helper'
 require 'lab42/core/kernel'
 
-describe Lab42::Behavior do
+describe Lab42::Core::Behavior do
   context :sendmsg do 
     let(:source){[*0..8]}
     let(:target){[*1..9]}

@@ -1,7 +1,7 @@
 require 'spec_helper'
 require 'lab42/core/behavior'
 
-describe Lab42::Behavior do
+describe Lab42::Core::Behavior do
 
   context :determine_behavior do
     let(:block){->{}}
