@@ -1,25 +1,10 @@
+require 'lab42/core/behavior'
+
 module Lab42
   module Core
     module IteratorReimpl
 
       
-      # TODO:
-      # Implement the concept of behabior and argument decomposition for behavioral methods
-      # (Higher Order  Methods in some way), to a support class/module usable throughout the
-      # Lab42/core gem.
-      # behavior is either the block or the last argument that qualifies as a behavior.
-      # The arguments are either all non behavior arguments or all but the last argument
-      # if all arguments are behaviors.
-      def self.decompose_args args, block
-        raise ArgumentError, 'too many arguments' if args.size + ( block ? 1 : 0 ) > 2
-        return [args,block] if block 
-        b, a = args.partition{|x| behavior? x}
-        behave = b.pop
-        a = b if a.empty?
-        raise ArgumentError, "No behavior specified" unless behave
-        return [a,behave]
-      end
-
       def self.included into
         _self = self
         into.module_eval do
@@ -36,7 +21,7 @@ module Lab42
 
           alias_method :__lab42_core_iterator_inject__, :inject
           define_method :inject  do |*args, &blk|
-            args, behavior = _self.decompose_args args, blk
+            args, behavior = Lab42::Behavior.decompose_arguments args, blk
             __lab42_core_iterator_inject__( *args, &behavior )
           end
           alias_method :reduce, :inject
@@ -45,13 +30,6 @@ module Lab42
           end
         end
 
-        private
-        # TODO:
-        # Maybe refactor this into a prominent place and express the concept
-        # of behavior in the README.
-        def self.behavior? x
-          Symbol === x || Proc === x || Method === x
-        end
       end
     end
   end # module Core
