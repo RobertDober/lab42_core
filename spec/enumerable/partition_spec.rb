@@ -1,8 +1,9 @@
 require 'spec_helper'
+require 'lab42/core/kernel'
 require 'lab42/core/enumerable'
 
 describe Enumerable do 
-  context :partition, :wip do
+  context :partition do
     context 'the old way' do 
       it 'still worx' do
         expect(
