@@ -21,7 +21,8 @@ function main
         new_window 'vi spec'
         open_vi spec ':colorscheme solarized'
 
-        new_console_window
+        new_window console
+        send_keys 'pry -I ./lib || irb -I ./lib'
 
 }
 
