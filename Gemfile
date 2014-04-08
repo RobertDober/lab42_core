@@ -6,5 +6,6 @@ group :development, :test do
   gem "rspec"
   gem 'ae'
   gem 'qed'
+  gem 'rdiscount'
 end
 
