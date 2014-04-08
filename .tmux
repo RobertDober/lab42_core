@@ -21,6 +21,11 @@ function main
         new_window 'vi spec'
         open_vi spec ':colorscheme solarized'
 
+
+        new_vi demo ':colorscheme 256_adaryn' 
+
+        new_window qed
+        
         new_console_window
 
 }
