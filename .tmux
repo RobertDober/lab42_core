@@ -26,7 +26,8 @@ function main
 
         new_window qed
         
-        new_console_window
+        new_window console
+        send_keys 'pry -I ./lib || irb -I ./lib'
 
 }
 

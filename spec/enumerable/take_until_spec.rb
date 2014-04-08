@@ -1,7 +1,7 @@
 require 'spec_helper'
 require 'lab42/core/enumerable'
 
-describe Enumerable do
+describe Enumerable do 
   
   context "take_while with accumulator (ary)" do 
     subject do
@@ -9,9 +9,9 @@ describe Enumerable do
     end
 
     it 'passes the accumulator' do
-      expect( subject.take_until { |_,acc|
-                                   acc.join(' ').size > 10
-      }).to eq( %w{alpha beta gamma} )
+      expect( subject.take_while { |_,acc|
+                                   acc.join(' ').size < 10
+      }).to eq( %w{alpha beta} )
     end
   end # context "take_while with accumulator"
   
@@ -25,8 +25,8 @@ describe Enumerable do
     # Would it not be lovely to write the expression below as:
     #    subject.inject_while(0, :+, sendmsg(:<, 100))
     it 'passes the accumulator' do
-      expect( subject.take_until { |_,acc|
-                                   acc.inject( 0, :+ ) > 100
+      expect( subject.take_while { |_,acc|
+                                   acc.inject( 0, :+ ) < 100
       }).to eq( [*1..14] )
     end
   end # context "take_while with accumulator"

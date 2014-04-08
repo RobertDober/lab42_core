@@ -1,12 +1,6 @@
+require_relative './behavior'
+
 module Kernel
-
-  def const_lambda a_const
-    -> *a, &b do
-      a_const
-    end
-  end
-
-  def sendmsg *args
-    ->(*a){ a.first.send(*(args + a.drop( 1 ))) }
-  end
+  include ::Lab42::Core::Behavior
 end # module Kernel
+include Kernel
