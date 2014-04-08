@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'lab42/core/proc'
 
 describe Proc do
   context 'not negates' do 
