@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 require 'lab42/core/behavior'
 
 module Enumerable
