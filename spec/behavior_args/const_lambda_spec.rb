@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Lab42::Core::Behavior do
+describe Lab42::Core::BehaviorArgs do
   context :const_lambda do 
     it "is itself" do
       expect(
@@ -20,4 +20,4 @@ describe Lab42::Core::Behavior do
   end # context :const_lambda
 
 
-end # describe Kernel
+end # describe Lab42::Core::BehaviorArgs

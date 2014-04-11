@@ -1,4 +1,4 @@
-require 'lab42/core/behavior'
+require 'lab42/core/behavior_args'
 
 
 module Enumerable
@@ -7,7 +7,7 @@ module Enumerable
   end
   alias_method :__orig_partition_lab42_core_enumerable__, :partition
   def partition *args, &blk
-    args, beh = Lab42::Core::Behavior.decompose_arguments args, blk
+    args, beh = Lab42::Core::BehaviorArgs.decompose_arguments args, blk
     raise ArgumentError, 'no behavior specified' unless beh
     raise ArgumentError, "non behavior arguments not allowed but provided #{args.inspect}" unless args.empty?
     __orig_partition_lab42_core_enumerable__( &beh )

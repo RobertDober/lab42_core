@@ -1,4 +1,4 @@
-require 'lab42/core/behavior'
+require 'lab42/core/behavior_args'
 
 module Lab42
   module Core
@@ -21,7 +21,7 @@ module Lab42
 
           alias_method :__lab42_core_iterator_inject__, :inject
           define_method :inject  do |*args, &blk|
-            args, behavior = Lab42::Core::Behavior.decompose_arguments args, blk
+            args, behavior = Lab42::Core::BehaviorArgs.decompose_arguments args, blk
             __lab42_core_iterator_inject__( *args, &behavior )
           end
           alias_method :reduce, :inject

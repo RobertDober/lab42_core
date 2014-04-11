@@ -1,6 +1,6 @@
+
 require_relative './behavior'
 
-module Kernel
-  include ::Lab42::Core::Behavior
-end # module Kernel
-include Kernel
+def Fn *args, &blk
+  Lab42::Core::Behavior.new( *args, &blk )
+end

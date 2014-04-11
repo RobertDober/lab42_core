@@ -12,7 +12,7 @@ describe Enumerable do
       end
     end # context 'the old way'
 
-    context 'the new way' do 
+    context 'the new way' do
       it 'allows to use a symbol for the block' do
         expect(
           (1..10).partition :odd?
@@ -21,13 +21,13 @@ describe Enumerable do
 
       it 'allows to use a proc' do
         expect(
-          (1..10).partition sendmsg(:odd?) 
+          (1..10).partition Fn(:odd?) 
         ).to eq([ [1,3,5,7,9], [2,4,6,8,10] ])
       end
 
       it 'but not both' do
         expect(
-          ->{ (1..2).partition :odd, sendmsg(:odd?) }
+          ->{ (1..2).partition :odd, fn(:odd?) }
         ).to raise_error( ArgumentError )
       end
 
