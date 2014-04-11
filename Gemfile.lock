@@ -8,18 +8,12 @@ GEM
     coderay (1.1.0)
     diff-lcs (1.2.5)
     facets (2.9.3)
-    ffi (1.9.3-java)
     forwarder2 (0.2.0)
     method_source (0.8.2)
     pry (0.9.12.6)
       coderay (~> 1.0)
       method_source (~> 0.8)
       slop (~> 3.4)
-    pry (0.9.12.6-java)
-      coderay (~> 1.0)
-      method_source (~> 0.8)
-      slop (~> 3.4)
-      spoon (~> 0.0)
     qed (2.9.1)
       ansi
       brass
@@ -38,7 +32,6 @@ GEM
       ffi
 
 PLATFORMS
-  java
   ruby
 
 DEPENDENCIES

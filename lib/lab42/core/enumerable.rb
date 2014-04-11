@@ -1,6 +1,5 @@
 require 'lab42/core/behavior_args'
 
-
 module Enumerable
   def grep2 expr
     partition{ |ele| expr === ele }

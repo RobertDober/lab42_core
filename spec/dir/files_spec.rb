@@ -1,5 +1,4 @@
 require 'spec_helper'
-require 'lab42/core/dir'
 
 describe Dir do 
   context "#files" do

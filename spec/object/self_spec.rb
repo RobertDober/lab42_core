@@ -1,5 +1,4 @@
 require 'spec_helper'
-require 'lab42/core/object'
 
 describe Object do
   it "is itself" do
