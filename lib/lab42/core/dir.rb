@@ -1,6 +1,12 @@
 class << Dir
   def files glob_para, &blk
-    glob( glob_para ).map do |f|
+    return enum_for(:__files__, glob_para) unless blk
+    __files__ glob_para, &blk
+  end
+
+  private
+
+  def __files__ glob_para, &blk
       full = File.join pwd, f
       next if File.directory? full
       [f, full]

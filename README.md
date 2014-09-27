@@ -4,6 +4,8 @@ Simple Ruby Core Module Extensions (for more see lab42\_more)
 
 ## Dir
 
+Can be used after `require 'lab42/core'` or `require 'lab42/core/dir'`  
+
 ```ruby
   Dir.files "**/*" do | partial_path, full_path |
   end
