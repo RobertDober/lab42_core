@@ -4,8 +4,8 @@ version = Lab42::Core::VERSION
 Gem::Specification.new do |s|
   s.name        = 'lab42_core'
   s.version     = version
-  s.summary     = "What I am missing in Ruby"
-  s.description = %{Hash, Dir and more extensions}
+  s.summary     = 'Simple Ruby Core Module Extensions (for more see lab42_more)'
+  s.description = %{Extending Array, Hash, File, Enumerable with convenience methods, conceptual changes have been moved into lab42_more} 
   s.authors     = ["Robert Dober"]
   s.email       = 'robert.dober@gmail.com'
   s.files       = Dir.glob("lib/**/*.rb")
@@ -15,6 +15,10 @@ Gem::Specification.new do |s|
 
   s.required_ruby_version = '>= 2.0.0'
 
-  s.add_development_dependency 'pry', '~> 0.9.12'
-  s.add_development_dependency 'rspec', '~> 2.13.0'
+  s.add_development_dependency 'pry', '~> 0.10'
+  s.add_development_dependency 'pry-nav', '~> 0.2'
+  s.add_development_dependency 'rspec', '~> 3.1'
+  s.add_development_dependency 'qed', '~> 2.9'
+  s.add_development_dependency 'ae', '~> 1.8'
+  s.add_development_dependency 'lab42_tmux2', '~> 0.0'
 end

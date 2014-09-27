@@ -1,6 +1,6 @@
 # lab42\_core
 
-Ruby Core Module Extensions (in the spirit of lab419/core)
+Simple Ruby Core Module Extensions (for more see lab42\_more)
 
 ## Dir
 
