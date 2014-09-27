@@ -32,11 +32,11 @@ All _modifications_ just return a new instance.
 
 ### What shall each yield?
 
-Obviously not the same as `.to_hash.each` would yield. So it yields `OpenObject` instances of size 1
+Obviously not the same as `.to\_hash.each` would yield. So it yields `OpenObject` instances of size 1
 
 ```ruby
   o = OpenObject.new( a: 42 )
-  o.map(:self).assert == [o]
+  o.enum_for(:each).to_a.assert == [o]
 ```
 
 ### Transformations
@@ -50,4 +50,5 @@ and sometimes to keys alone.
     o = OpenObject.new a: 42, b: 44, c: 46
 
     o.transform_values{|x| x / 2 }.assert == OpenObject.new( a: 21, b: 22, c: 23 )
+    o.assert == OpenObject.new a: 42, b: 44, c: 46 
 ```

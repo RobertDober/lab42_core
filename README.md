@@ -9,12 +9,47 @@ Simple Ruby Core Module Extensions (for more see lab42\_more)
   end
 ```
 
+For details see the corresponding [QED demo](https://github.com/RobertDober/lab42_core/blob/master/demo/dir.md).
+
 ## Enumerable
+
+### grep2
 
 ```ruby
   enum.grep2 expr # ===>
   enum.partition{ |ele| expr === ele }
 ```
+
+### to\_proc
+
+And also `Enumerable#to\_proc` as e.g.
+
+```ruby
+    counter = (1..3).to_proc
+    counter.().assert == 1
+    counter.().assert == 2
+    counter.().assert == 3
+    StopIteration.assert.raised? do
+      counter.()
+    end
+```
+
+### flatten\_once
+
+```ruby
+    [{a: 1}, [[{b: 2},[3]]]]
+      .flatten_once
+      .assert == [{a: 1}, [{b: 2}, [3]]]
+```
+
+
+For details see the corresponding [QED demo](https://github.com/RobertDober/lab42_core/blob/master/demo/enumerable.md).
+
+## File
+
+`expand\_local\_path` to get rid of the `__FILE__` inside `expand\_path`.
+
+For details see the corresponding [QED demo](https://github.com/RobertDober/lab42_core/blob/master/demo/file.md).
 
 ## Hash
 
@@ -22,61 +57,33 @@ Simple Ruby Core Module Extensions (for more see lab42\_more)
   {a: 42, b: 43}.only :a, :c # ===> {a: 42}
 ```
 
+For details see the corresponding [QED demo](https://github.com/RobertDober/lab42_core/blob/master/demo/hash.md).
+
 ## Fn
 
-Must be required specifically!
-
-### Access to methods
-
-```ruby
-  require 'lab42/core/fn'
-
-  # Get method of an object
-  printer = Kernel.fn.puts
-  printer.( 42 )   
-  2.times(&printer)
-
-  # It also extends some enumerable methods for easier execution
-  %w{hello world}.each printer
-```
-
-Thusly `fn` gives us access to methods of objects, but what about instance methods?
-
-### Access to instance methods
-
-Is realized via `fm`.
-
-```ruby
-  require 'lab42/core/fn'
-
-  (1..100).reduce Fixnum.fm.+ # ---> 5050
-```
-
-### Objects as constant procs
-
-While `Object#self` will return the obvious, so will by extension `object.fn.self`.
-
-This can be very useful, e.g. in this nice way to create an empty array ;)
-
-```ruby
-  (1..100).filter(false.fn.self)
-```
-
-If you hesitate to use this all, have a look into Kernel#const_lambda
-
-### Partial Application
-
-```ruby
-  f = Array.fm.push :next
-  [[],[1]].map( f ) # ---> [[:next], [1, :next]]
-
-  a=[]
-  f = a.fn.push :first
-  f.(1) # a ---> [:first, 1]
-```
+Has been moved into gem [lab42\_more](https://github.com/RobertDober/lab42_more)
 
 ## OpenObject
 
 Immutable Open Objects
 
-They are described in detail [here](dox/OpenObject.md) 
+```ruby
+  x = OpenObject.new a: 42
+  x.a.assert   == 42
+  x[:a].assert == 42
+```
+
+Immutability
+
+
+All _modifications_ just return a new instance.
+
+```ruby
+  x = OpenObject.new a: 42, b: 43
+
+  y = x.update a: 44
+  y.to_hash.assert == {a: 44, b: 43}
+  x.a.assert       ==  42
+```
+
+For details see the corresponding [QED demo](https://github.com/RobertDober/lab42_core/blob/master/demo/open_object.md).
