@@ -1,19 +1,24 @@
 class << Dir
   def files glob_para, &blk
-    return enum_for(:__files__, glob_para) unless blk
     __files__ glob_para, &blk
   end
 
   private
 
   def __files__ glob_para, &blk
-      full = File.join pwd, f
-      next if File.directory? full
-      [f, full]
-    end
-      .compact
-      .tap do | result |
-        result.each(&blk) if blk
+    here = pwd
+    if blk
+      glob( glob_para ).each do | f |
+        next if File.directory? f
+        blk.( [ f, File.expand_path(File.join( here, f )) ] )
       end
+    else
+      Enumerator.new do |y|
+        glob( glob_para ).each do | f |
+          next if File.directory? f
+          y.yield [ f, File.expand_path(File.join( here, f )) ]
+        end
+      end
+    end
   end
 end
