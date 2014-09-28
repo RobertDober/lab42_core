@@ -5,6 +5,9 @@
 
 ### grep2
 
+Partitioning with the `===` method can be done with `grep2` as filtering with the `===` method
+can be done with `grep` 
+
 ```ruby
     # enum.grep2 expr # ===>
     # enum.partition{ |ele| expr === ele }
@@ -14,6 +17,24 @@
       %w{ beta romeo centauri }
     ]
 ```
+
+`Enumerator::Lazy` instances are partitioned into `Enumerator::Lazy` instances.
+
+```ruby
+    e = ('a'..'e').to_enum.lazy
+    vowels, consonantes = e.grep2 %r{[ae]}
+
+    vowels.assert.kind_of? Enumerator::Lazy
+    consonantes.assert.kind_of? Enumerator::Lazy
+
+    vowels.next.assert == 'a'
+    vowels.next.assert == 'e'
+    StopIteration.assert.raised? do
+      vowels.next
+    end
+    consonantes.to_a.assert == %w{b c d}
+```
+
 
 ### to\_proc
 
@@ -28,14 +49,3 @@ And also `Enumerable#to\_proc` as e.g.
       counter.()
     end
 ```
-
-### flatten\_once
-
-```ruby
-    [{a: 1}, [[{b: 2},[3]]]]
-      .flatten_once
-      .assert == [{a: 1}, [{b: 2}, [3]]]
-```
-
-
-

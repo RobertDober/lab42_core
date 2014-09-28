@@ -2,6 +2,21 @@
 
 Simple Ruby Core Module Extensions (for more see lab42\_more)
 
+## Array
+
+Can be used after `require 'lab42/core'` or `require 'lab42/core/array'`  
+
+### flatten\_once
+
+```ruby
+    [].flatten_once.assert.empty?
+
+    [[2, {a: 3}, [4]], {a: 5}].flatten_once.assert ==
+      [2, {a: 3}, [4], {a: 5}]
+```
+
+For details see the corresponding [QED demo](https://github.com/RobertDober/lab42_core/blob/master/demo/array.md).
+
 ## Dir
 
 Can be used after `require 'lab42/core'` or `require 'lab42/core/dir'`  
