@@ -1,7 +1,6 @@
 require 'spec_helper'
-require 'lab42/core/open_object'
 
-describe Lab42::Core::OpenObject do
+describe OpenObject do
   subject do
     described_class.new a: 42, b: 43
   end

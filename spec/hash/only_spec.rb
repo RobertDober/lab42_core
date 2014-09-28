@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Hash do
+describe Hash, :wip do
 
   context "empty yields empty" do
     it "for no args" do
