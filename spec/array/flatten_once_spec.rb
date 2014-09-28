@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Array do 
+describe Array, :wip do
   context 'flatten_once' do 
     it 'works on empty' do
       expect( [].flatten_once ).to be_empty

@@ -51,14 +51,6 @@ And also `Enumerable#to\_proc` as e.g.
     end
 ```
 
-### flatten\_once
-
-```ruby
-    [{a: 1}, [[{b: 2},[3]]]]
-      .flatten_once
-      .assert == [{a: 1}, [{b: 2}, [3]]]
-```
-
 
 For details see the corresponding [QED demo](https://github.com/RobertDober/lab42_core/blob/master/demo/enumerable.md).
 

@@ -1,6 +1,7 @@
 require_relative './core/array'
 require_relative './core/dir'
 require_relative './core/enumerable'
+require_relative './core/file'
 # require_relative './core/hash'
 # require_relative './core/kernel'
 # require_relative './core/object'
