@@ -1,2 +1,0 @@
-APPLIQUE_CONSTANT = true
-
