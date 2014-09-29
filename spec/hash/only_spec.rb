@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Hash, :wip do
+describe Hash do
 
   context "empty yields empty" do
     it "for no args" do
@@ -38,4 +38,4 @@ describe Hash, :wip do
       expect( clone ).to eq( :a => 42, 42 => :a )
     end
   end # context "non empty"
-end # describe Hash
+end

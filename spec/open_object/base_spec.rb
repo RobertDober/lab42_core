@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe OpenObject, :wip do
+describe OpenObject do
   subject do
     described_class.new a: 42, b: 43
   end
@@ -24,5 +24,4 @@ describe OpenObject, :wip do
       expect( subject.method :merge ).to eq( subject.method :update )
     end
   end
-
-end # describe Lab42::Core::OpenObject
+end

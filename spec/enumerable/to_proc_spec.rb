@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Enumerable, :wip do
+describe Enumerable do
  
   shared_examples_for 'a digit yielder' do
     it 'yields zero' do
@@ -50,4 +50,4 @@ describe Enumerable, :wip do
     end
     it_behaves_like 'a digit yielder'
   end # context Enumerator
-end # describe Enumerable
+end

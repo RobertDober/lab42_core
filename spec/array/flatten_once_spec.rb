@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Array, :wip do
+describe Array do
   context 'flatten_once' do 
     it 'works on empty' do
       expect( [].flatten_once ).to be_empty
@@ -21,4 +21,4 @@ describe Array, :wip do
       expect( [(1..1), [(1..2)]].flatten_once ).to eq [(1..1), (1..2)]
     end
   end # context 'flatten_once'
-end # describe Array
+end

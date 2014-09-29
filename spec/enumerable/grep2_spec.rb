@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Enumerable, :wip do
+describe Enumerable do
   context "#grep2" do 
     context "partitions" do 
       it "an empty array" do
@@ -55,4 +55,4 @@ describe Enumerable, :wip do
 
     end # context "partitions"
   end # context "#grep2"
-end # describe Enumerable
+end

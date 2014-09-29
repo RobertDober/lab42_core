@@ -4,7 +4,7 @@ def expanded_path *args
   File.expand_path( File.join( '..', args ), __FILE__ )
 end
 
-describe File, :wip do
+describe File do
   context 'expand_local_path' do 
     it 'does not need the leading ".."' do
       expect( File.expand_local_path{ 'a' } ).to eq expanded_path 'a'
@@ -25,4 +25,4 @@ describe File, :wip do
 
 
   end # context 'expand_local_path'
-end # describe File
+end

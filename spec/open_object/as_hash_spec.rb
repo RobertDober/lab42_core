@@ -6,7 +6,7 @@ describe OpenObject do
     described_class.new a: 42, b: 43
   end
 
-  context 'Relationship with Hash' do 
+  context 'Relationship with Hash' do
     it 'can be one' do
       expect( subject.to_hash ).to eq(a: 42, b: 43 )
     end
@@ -17,14 +17,8 @@ describe OpenObject do
       expect( subject.to_hash[:a] ).to eq(42)
     end
 
-    context 'can be constructed from a Hash' do
-      it '... but not by default' do
-        expect( ->{ {}.to_open_object } ).to raise_error( NoMethodError )
-      end
-      it '... only if so requested' do
-        require 'lab42/core/open_object/hash'
-        expect( {a: 42, b: 43}.to_open_object ).to eq( subject )
-      end
+    it 'can be constructed from a Hash' do
+      expect( {a: 42, b: 43}.to_open_object ).to eq( subject )
     end
   end # context 'Relationship with Hash'
 

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Dir, :wip do
+describe Dir do
 
   def pair local_path
     [ local_path, File.join(ENV["PWD"], local_path) ]
@@ -31,4 +31,4 @@ describe Dir, :wip do
       end
     end # context 'Enumerator'
   end
-end # describe Dir
+end
