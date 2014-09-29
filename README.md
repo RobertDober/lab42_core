@@ -56,7 +56,7 @@ For details see the corresponding [QED demo](https://github.com/RobertDober/lab4
 
 ## File
 
-`expand\_local\_path` to get rid of the `__FILE__` inside `expand\_path`.
+`expand_local_path` to get rid of the `__FILE__` inside `expand_path`.
 
 For details see the corresponding [QED demo](https://github.com/RobertDober/lab42_core/blob/master/demo/file.md).
 
