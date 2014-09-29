@@ -1,3 +1,7 @@
+
+
+https://travis-ci.org/RobertDober/lab42_core/builds#
+
 # lab42\_core
 
 Simple Ruby Core Module Extensions (for more see lab42\_more)
