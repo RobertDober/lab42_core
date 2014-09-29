@@ -1,0 +1,7 @@
+--title "AE API"
+--protected
+--private
+lib/
+-
+[A-Z]*.*
+
