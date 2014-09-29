@@ -2,9 +2,9 @@
 <html>
 
   <head>
-    <meta charset='utf-8' />
-    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
-    <meta name="description" content="Lab42::Core : Ruby Core Module Extensions (in the spirit of lab419/core)" />
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="description" content="Lab42::Core : Ruby Core Module Extensions (in the spirit of lab419/core)">
 
     <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
 
@@ -34,157 +34,103 @@
         <h1>
 <a name="lab42_core" class="anchor" href="#lab42_core"><span class="octicon octicon-link"></span></a>lab42_core</h1>
 
-<p>Ruby Core Module Extensions (in the spirit of lab419/core)</p>
+<p>Simple Ruby Core Module Extensions (for more see lab42_more)</p>
 
 <h2>
-<a name="motivation" class="anchor" href="#motivation"><span class="octicon octicon-link"></span></a>Motivation</h2>
+<a name="array" class="anchor" href="#array"><span class="octicon octicon-link"></span></a>Array</h2>
 
-<p>This Ruby extension library tries to ease the developper's work by means of two fundamental
-concepts.</p>
-
-<h3>
-<a name="concepts" class="anchor" href="#concepts"><span class="octicon octicon-link"></span></a>Concepts</h3>
-
-<ul>
-<li><p>Extension of Behavior</p></li>
-<li><p>Unification of Behavior</p></li>
-</ul><p>This is achieved by a conventional argument API on top of Ruby's core API, and is highly
-opinnionated.</p>
+<p>Can be used after <code>require 'lab42/core'</code> or <code>require 'lab42/core/array'</code>  </p>
 
 <h3>
-<a name="opinions" class="anchor" href="#opinions"><span class="octicon octicon-link"></span></a>Opinions</h3>
+<a name="flatten_once" class="anchor" href="#flatten_once"><span class="octicon octicon-link"></span></a>flatten_once</h3>
 
-<h4>
-<a name="the-symbolto_proc-kludge-is-a-crime" class="anchor" href="#the-symbolto_proc-kludge-is-a-crime"><span class="octicon octicon-link"></span></a>The Symbol#to_proc kludge is a crime.</h4>
+<div class="highlight highlight-ruby"><pre>    <span class="o">[].</span><span class="n">flatten_once</span><span class="o">.</span><span class="n">assert</span><span class="o">.</span><span class="n">empty?</span>
 
-<p>As useful as it is it has two shortcomings and I cannot find any viewpoint that allows
-me to not see at least one of these two.
-Either I adhere to the point of view, that it cannot be the responsability of <code>Symbol</code>
-to transform itself to a method. Or if I could I would need to point out that it does
-it very badly. Here is my cannonical example for that point.</p>
-
-<div class="highlight highlight-ruby"><pre>  <span class="p">(</span><span class="mi">1</span><span class="o">.</span><span class="n">.</span><span class="mi">10</span><span class="p">)</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span> <span class="o">&amp;</span><span class="ss">:even?</span> <span class="p">)</span>
-  <span class="c1"># and how can I do this?</span>
-  <span class="p">(</span><span class="mi">1</span><span class="o">.</span><span class="n">.</span><span class="mi">10</span><span class="p">)</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span> <span class="o">&amp;</span><span class="ss">:&gt;</span><span class="p">,</span> <span class="mi">10</span> <span class="p">)</span><span class="sc">??</span><span class="p">?</span>
+    <span class="o">[[</span><span class="mi">2</span><span class="p">,</span> <span class="p">{</span><span class="ss">a</span><span class="p">:</span> <span class="mi">3</span><span class="p">},</span> <span class="o">[</span><span class="mi">4</span><span class="o">]]</span><span class="p">,</span> <span class="p">{</span><span class="ss">a</span><span class="p">:</span> <span class="mi">5</span><span class="p">}</span><span class="o">].</span><span class="n">flatten_once</span><span class="o">.</span><span class="n">assert</span> <span class="o">==</span>
+      <span class="o">[</span><span class="mi">2</span><span class="p">,</span> <span class="p">{</span><span class="ss">a</span><span class="p">:</span> <span class="mi">3</span><span class="p">},</span> <span class="o">[</span><span class="mi">4</span><span class="o">]</span><span class="p">,</span> <span class="p">{</span><span class="ss">a</span><span class="p">:</span> <span class="mi">5</span><span class="p">}</span><span class="o">]</span>
 </pre></div>
 
-<p>I could not even come up with a &amp; based notation that would parse...</p>
-
-<p>As YHS is very heavily influenced by functional style it might not come as a surprise
-that he thinks that the responsibility to convert a symbol to behavior, is to be with
-the behavior consumer.
-Of course there are countless behavior consumers, as a matter of fact one could call
-them Higher Order Methods, and it would be impractical not to provide one single point
-of responsability for that behavior provision. But by freeing <code>Symbol</code> from this 
-responsibility we can accomplish much more in a single, dedicated place.</p>
-
-<p>This dedicated place, which is automatically loaded if you require <code>lab42/core</code> does
-however not introduce the API methods into <code>Kernel</code>. If you want that to happen, you
-need to require <code>lab42/core/kernel</code> so that it is up to you, if you want the <code>Kernel</code>
-namespace polluted or not.</p>
-
-<p>This too is a guiding principle of this gem. Require <code>lab42/core</code> and get the <code>Lab42</code>
-namespace filled up with everything available. Require anything in particular to get
-only part of it and / or monkey patches for <code>Kernel</code>, <code>Enumerable</code> and their friends.</p>
-
-<h4>
-<a name="enumerables-need-a-unified-api" class="anchor" href="#enumerables-need-a-unified-api"><span class="octicon octicon-link"></span></a>Enumerables Need a Unified API</h4>
-
-<p>And this goes beyond passing the <code>Symbol#to_proc</code> kludge. Therefore one can count on
-the <code>Behavior</code> based implementation of the API.</p>
-
-<h1>
-<a name="the-api" class="anchor" href="#the-api"><span class="octicon octicon-link"></span></a>The API</h1>
-
-<h2>
-<a name="behavior" class="anchor" href="#behavior"><span class="octicon octicon-link"></span></a>Behavior</h2>
+<p>For details see the corresponding <a href="https://github.com/RobertDober/lab42_core/blob/master/demo/array.md">QED demo</a>.</p>
 
 <h2>
 <a name="dir" class="anchor" href="#dir"><span class="octicon octicon-link"></span></a>Dir</h2>
 
-<div class="highlight highlight-ruby"><pre>  <span class="nb">require</span> <span class="s1">'lab42/core/dir'</span>
-  <span class="no">Dir</span><span class="o">.</span><span class="n">files</span> <span class="s2">"**/*"</span> <span class="k">do</span> <span class="o">|</span> <span class="n">partial_path</span><span class="p">,</span> <span class="n">full_path</span> <span class="o">|</span>
+<p>Can be used after <code>require 'lab42/core'</code> or <code>require 'lab42/core/dir'</code>  </p>
+
+<div class="highlight highlight-ruby"><pre>  <span class="no">Dir</span><span class="o">.</span><span class="n">files</span> <span class="s2">"**/*"</span> <span class="k">do</span> <span class="o">|</span> <span class="n">partial_path</span><span class="p">,</span> <span class="n">full_path</span> <span class="o">|</span>
   <span class="k">end</span>
 </pre></div>
+
+<p>For details see the corresponding <a href="https://github.com/RobertDober/lab42_core/blob/master/demo/dir.md">QED demo</a>.</p>
 
 <h2>
 <a name="enumerable" class="anchor" href="#enumerable"><span class="octicon octicon-link"></span></a>Enumerable</h2>
 
-<div class="highlight highlight-ruby"><pre>  <span class="nb">require</span> <span class="s1">'lab42/core/enumerable'</span>
+<h3>
+<a name="grep2" class="anchor" href="#grep2"><span class="octicon octicon-link"></span></a>grep2</h3>
 
-  <span class="n">enum</span><span class="o">.</span><span class="n">grep2</span> <span class="n">expr</span> <span class="c1"># ===&gt;</span>
+<div class="highlight highlight-ruby"><pre>  <span class="n">enum</span><span class="o">.</span><span class="n">grep2</span> <span class="n">expr</span> <span class="c1"># ===&gt;</span>
   <span class="n">enum</span><span class="o">.</span><span class="n">partition</span><span class="p">{</span> <span class="o">|</span><span class="n">ele</span><span class="o">|</span> <span class="n">expr</span> <span class="o">===</span> <span class="n">ele</span> <span class="p">}</span>
-  <span class="c1"># But for non behavior parameters ...</span>
-  <span class="n">enum</span><span class="o">.</span><span class="n">partition</span> <span class="n">expr</span>
-  <span class="c1"># the same effect can be achieved by the predicate semantics.</span>
 </pre></div>
+
+<h3>
+<a name="to_proc" class="anchor" href="#to_proc"><span class="octicon octicon-link"></span></a>to_proc</h3>
+
+<p>And also <code>Enumerable#to\_proc</code> as e.g.</p>
+
+<div class="highlight highlight-ruby"><pre>    <span class="n">counter</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="o">.</span><span class="n">.</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">to_proc</span>
+    <span class="n">counter</span><span class="o">.</span><span class="p">()</span><span class="o">.</span><span class="n">assert</span> <span class="o">==</span> <span class="mi">1</span>
+    <span class="n">counter</span><span class="o">.</span><span class="p">()</span><span class="o">.</span><span class="n">assert</span> <span class="o">==</span> <span class="mi">2</span>
+    <span class="n">counter</span><span class="o">.</span><span class="p">()</span><span class="o">.</span><span class="n">assert</span> <span class="o">==</span> <span class="mi">3</span>
+    <span class="no">StopIteration</span><span class="o">.</span><span class="n">assert</span><span class="o">.</span><span class="n">raised?</span> <span class="k">do</span>
+      <span class="n">counter</span><span class="o">.</span><span class="p">()</span>
+    <span class="k">end</span>
+</pre></div>
+
+<p>For details see the corresponding <a href="https://github.com/RobertDober/lab42_core/blob/master/demo/enumerable.md">QED demo</a>.</p>
+
+<h2>
+<a name="file" class="anchor" href="#file"><span class="octicon octicon-link"></span></a>File</h2>
+
+<p><code>expand\_local\_path</code> to get rid of the <code>__FILE__</code> inside <code>expand\_path</code>.</p>
+
+<p>For details see the corresponding <a href="https://github.com/RobertDober/lab42_core/blob/master/demo/file.md">QED demo</a>.</p>
 
 <h2>
 <a name="hash" class="anchor" href="#hash"><span class="octicon octicon-link"></span></a>Hash</h2>
 
-<div class="highlight highlight-ruby"><pre>  <span class="nb">require</span> <span class="s1">'lab42/core/hash'</span>
-
-  <span class="p">{</span><span class="ss">a</span><span class="p">:</span> <span class="mi">42</span><span class="p">,</span> <span class="ss">b</span><span class="p">:</span> <span class="mi">43</span><span class="p">}</span><span class="o">.</span><span class="n">only</span> <span class="ss">:a</span><span class="p">,</span> <span class="ss">:c</span> <span class="c1"># ===&gt; {a: 42}</span>
+<div class="highlight highlight-ruby"><pre>  <span class="p">{</span><span class="ss">a</span><span class="p">:</span> <span class="mi">42</span><span class="p">,</span> <span class="ss">b</span><span class="p">:</span> <span class="mi">43</span><span class="p">}</span><span class="o">.</span><span class="n">only</span> <span class="ss">:a</span><span class="p">,</span> <span class="ss">:c</span> <span class="c1"># ===&gt; {a: 42}</span>
 </pre></div>
+
+<p>For details see the corresponding <a href="https://github.com/RobertDober/lab42_core/blob/master/demo/hash.md">QED demo</a>.</p>
 
 <h2>
 <a name="fn" class="anchor" href="#fn"><span class="octicon octicon-link"></span></a>Fn</h2>
 
-<h3>
-<a name="access-to-methods" class="anchor" href="#access-to-methods"><span class="octicon octicon-link"></span></a>Access to methods</h3>
-
-<div class="highlight highlight-ruby"><pre>  <span class="nb">require</span> <span class="s1">'lab42/core/fn'</span>
-
-  <span class="c1"># Get method of an object</span>
-  <span class="n">printer</span> <span class="o">=</span> <span class="no">Kernel</span><span class="o">.</span><span class="n">fn</span><span class="o">.</span><span class="n">puts</span>
-  <span class="n">printer</span><span class="o">.</span><span class="p">(</span> <span class="mi">42</span> <span class="p">)</span>   
-  <span class="mi">2</span><span class="o">.</span><span class="n">times</span><span class="p">(</span><span class="o">&amp;</span><span class="n">printer</span><span class="p">)</span>
-
-  <span class="c1"># It also extends some enumerable methods for easier execution</span>
-  <span class="sx">%w{hello world}</span><span class="o">.</span><span class="n">each</span> <span class="n">printer</span>
-</pre></div>
-
-<p>Thusly <code>fn</code> gives us access to methods of objects, but what about instance methods?</p>
-
-<h3>
-<a name="access-to-instance-methods" class="anchor" href="#access-to-instance-methods"><span class="octicon octicon-link"></span></a>Access to instance methods</h3>
-
-<p>Is realized via <code>fm</code>.</p>
-
-<div class="highlight highlight-ruby"><pre>  <span class="nb">require</span> <span class="s1">'lab42/core/fn'</span>
-
-  <span class="p">(</span><span class="mi">1</span><span class="o">.</span><span class="n">.</span><span class="mi">100</span><span class="p">)</span><span class="o">.</span><span class="n">reduce</span> <span class="no">Fixnum</span><span class="o">.</span><span class="n">fm</span><span class="o">.</span><span class="n">+</span> <span class="c1"># ---&gt; 5050</span>
-</pre></div>
-
-<h3>
-<a name="objects-as-constant-procs" class="anchor" href="#objects-as-constant-procs"><span class="octicon octicon-link"></span></a>Objects as constant procs</h3>
-
-<p>While <code>Object#self</code> will return the obvious, so will by extension <code>object.fn.self</code>.</p>
-
-<p>This can be very useful, e.g. in this nice way to create an empty array ;)</p>
-
-<div class="highlight highlight-ruby"><pre>  <span class="p">(</span><span class="mi">1</span><span class="o">.</span><span class="n">.</span><span class="mi">100</span><span class="p">)</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="kp">false</span><span class="o">.</span><span class="n">fn</span><span class="o">.</span><span class="n">self</span><span class="p">)</span>
-</pre></div>
-
-<p>If you hesitate to use this all, have a look into Kernel#const_lambda</p>
-
-<h3>
-<a name="partial-application" class="anchor" href="#partial-application"><span class="octicon octicon-link"></span></a>Partial Application</h3>
-
-<div class="highlight highlight-ruby"><pre>  <span class="n">f</span> <span class="o">=</span> <span class="nb">Array</span><span class="o">.</span><span class="n">fm</span><span class="o">.</span><span class="n">push</span> <span class="ss">:next</span>
-  <span class="o">[[]</span><span class="p">,</span><span class="o">[</span><span class="mi">1</span><span class="o">]].</span><span class="n">map</span><span class="p">(</span> <span class="n">f</span> <span class="p">)</span> <span class="c1"># ---&gt; [[:next], [1, :next]]</span>
-
-  <span class="n">a</span><span class="o">=[]</span>
-  <span class="n">f</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="n">fn</span><span class="o">.</span><span class="n">push</span> <span class="ss">:first</span>
-  <span class="n">f</span><span class="o">.</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># a ---&gt; [:first, 1]</span>
-</pre></div>
+<p>Has been moved into gem <a href="https://github.com/RobertDober/lab42_more">lab42_more</a></p>
 
 <h2>
 <a name="openobject" class="anchor" href="#openobject"><span class="octicon octicon-link"></span></a>OpenObject</h2>
 
 <p>Immutable Open Objects</p>
 
-<p>They are described in detail <a href="dox/OpenObject.md">here</a> </p>
+<div class="highlight highlight-ruby"><pre>  <span class="n">x</span> <span class="o">=</span> <span class="no">OpenObject</span><span class="o">.</span><span class="n">new</span> <span class="ss">a</span><span class="p">:</span> <span class="mi">42</span>
+  <span class="n">x</span><span class="o">.</span><span class="n">a</span><span class="o">.</span><span class="n">assert</span>   <span class="o">==</span> <span class="mi">42</span>
+  <span class="n">x</span><span class="o">[</span><span class="ss">:a</span><span class="o">].</span><span class="n">assert</span> <span class="o">==</span> <span class="mi">42</span>
+</pre></div>
+
+<p>Immutability</p>
+
+<p>All <em>modifications</em> just return a new instance.</p>
+
+<div class="highlight highlight-ruby"><pre>  <span class="n">x</span> <span class="o">=</span> <span class="no">OpenObject</span><span class="o">.</span><span class="n">new</span> <span class="ss">a</span><span class="p">:</span> <span class="mi">42</span><span class="p">,</span> <span class="ss">b</span><span class="p">:</span> <span class="mi">43</span>
+
+  <span class="n">y</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">update</span> <span class="ss">a</span><span class="p">:</span> <span class="mi">44</span>
+  <span class="n">y</span><span class="o">.</span><span class="n">to_hash</span><span class="o">.</span><span class="n">assert</span> <span class="o">==</span> <span class="p">{</span><span class="ss">a</span><span class="p">:</span> <span class="mi">44</span><span class="p">,</span> <span class="ss">b</span><span class="p">:</span> <span class="mi">43</span><span class="p">}</span>
+  <span class="n">x</span><span class="o">.</span><span class="n">a</span><span class="o">.</span><span class="n">assert</span>       <span class="o">==</span>  <span class="mi">42</span>
+</pre></div>
+
+<p>For details see the corresponding <a href="https://github.com/RobertDober/lab42_core/blob/master/demo/open_object.md">QED demo</a>.</p>
       </section>
     </div>
 
