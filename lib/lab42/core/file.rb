@@ -5,4 +5,4 @@ class << File
     expand_path File.join( '..', values.compact), blk.source_location.first
     
   end
-end # class <<
+end # class << File
