@@ -1,11 +1,11 @@
 require 'spec_helper'
 require 'lab42/core/open_object'
 
-describe Lab42::Core::OpenObject do 
+describe OpenObject do 
   subject do
     described_class
   end
-  it 'cannot be subclassed' do
-    expect( ->{c = Class.new( subject )} ).to raise_error
+  context 'cannot be subclassed', :wip do
+    it{ expect( ->{c = Class.new( subject )} ).to raise_error, /RuntimeError: I prefer delegation/ }
   end
-end # describe Lab42::Core::OpenObject
+end

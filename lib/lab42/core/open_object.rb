@@ -1,13 +1,10 @@
-require 'lab42/core/fn'
 require 'forwarder'
-require 'lab42/core/open_object/transformations'
+# require 'lab42/core/open_object/transformations'
 
-module Lab42
-  module Core
     class OpenObject
       include Enumerable
 
-      include Transformations
+      # include Lab42::Core::OpenObject::Transformations
 
       extend Forwarder
       forward_all :[], :keys, :length, :size, :values, to: :@data
@@ -47,5 +44,3 @@ module Lab42
         end
       end
     end # class OpenObject
-  end # module Core
-end # module Lab42

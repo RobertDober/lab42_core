@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe OpenObject do
+describe OpenObject, :wip do
   subject do
     described_class.new a: 42, b: 43
   end
