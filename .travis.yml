@@ -6,5 +6,5 @@ rvm:
 install: bundle install
 script: 
   - bundle exec rspec spec
-  - bunlde exec qed demo
+  - bundle exec qed demo
 
