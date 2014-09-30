@@ -3,7 +3,9 @@ rvm:
   - "2.0.0"
   - "2.1.2"
 
-install: bundle install
+install: 
+  - bundle install
+  - mkdir -p tmp/qed || true
 script: 
   - bundle exec rspec spec
   - bundle exec qed demo
