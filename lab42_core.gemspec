@@ -14,6 +14,7 @@ Gem::Specification.new do |s|
   s.licenses    = %w{MIT}
 
   s.required_ruby_version = '>= 2.0.0'
+  s.add_dependency 'forwarder2', '~> 0.2'
 
   s.add_development_dependency 'pry', '~> 0.10'
   s.add_development_dependency 'pry-nav', '~> 0.2'
