@@ -5,7 +5,8 @@ rvm:
 
 install: 
   - bundle install
-  - mkdir -p tmp/qed || true
+    # Assure order of files for qed
+  - touch demo/fordir/subdir/1
 script: 
   - bundle exec rspec spec
   - bundle exec qed demo
