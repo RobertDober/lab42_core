@@ -20,7 +20,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'rspec', '~> 3.1'
   s.add_development_dependency 'qed', '~> 2.9'
   s.add_development_dependency 'ae', '~> 1.8'
-  s.add_development_dependency 'lab42_tmux2', '~> 0.0'
+  # s.add_development_dependency 'lab42_tmux2', '~> 0.0'
   s.add_development_dependency 'travis-lint', '~> 2.0'
-  s.add_development_dependency 'rake', '~> 10.3'
+  # s.add_development_dependency 'rake', '~> 10.3'
 end
