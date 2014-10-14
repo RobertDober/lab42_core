@@ -38,6 +38,8 @@ can be done with `grep`
 
 ### to\_proc
 
+#### For Enumerables and Friends
+
 And also `Enumerable#to\_proc` as e.g.
 
 ```ruby
