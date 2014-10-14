@@ -1,3 +1,6 @@
+require "codeclimate-test-reporter"
+CodeClimate::TestReporter.start
+
 require_relative "../lib/lab42/core"
 
 PROJECT_ROOT = File.expand_path "../..", __FILE__
