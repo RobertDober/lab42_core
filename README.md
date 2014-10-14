@@ -5,6 +5,7 @@
 
 
 [![Build Status](https://travis-ci.org/RobertDober/lab42_core.svg?branch=master)](https://travis-ci.org/RobertDober/lab42_core)
+[![Code Climate](https://codeclimate.com/github/RobertDober/lab42_core/badges/gpa.svg)](https://codeclimate.com/github/RobertDober/lab42_core)
 
 Simple Ruby Core Module Extensions (for more see lab42\_more)
 
