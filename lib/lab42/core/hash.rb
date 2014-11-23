@@ -8,4 +8,12 @@ class Hash
       end
     end
   end
+
+  def with_present key, default: nil
+    if has_key? key
+      yield fetch(key), self
+    else
+      default
+    end
+  end
 end # class Hash

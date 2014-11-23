@@ -6,6 +6,6 @@ describe OpenObject do
     described_class
   end
   context 'cannot be subclassed' do
-    it{ expect( ->{c = Class.new( subject )} ).to raise_error, /RuntimeError: I prefer delegation/ }
+    it{ expect( ->{c = Class.new( subject )} ).to raise_error, "RuntimeError: I prefer delegation" }
   end
 end

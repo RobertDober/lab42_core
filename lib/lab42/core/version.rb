@@ -1,5 +1,5 @@
 module Lab42
   module Core
-    VERSION = "0.1.0"
+    VERSION = "0.1.1"
   end # module Core
 end # module Lab42

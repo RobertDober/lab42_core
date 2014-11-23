@@ -5,7 +5,7 @@ def expanded_path *args
 end
 
 describe File do
-  context 'expand_local_path' do 
+  context 'expand_local_path' do
     it 'does not need the leading ".."' do
       expect( File.expand_local_path{ 'a' } ).to eq expanded_path 'a'
     end
