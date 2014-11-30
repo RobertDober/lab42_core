@@ -65,9 +65,22 @@ For details see the corresponding [QED demo](https://github.com/RobertDober/lab4
 
 ## File
 
+### `expand_local_path`
+
 `expand_local_path` to get rid of the `__FILE__` inside `expand_path`.
 
 For details see the corresponding [QED demo](https://github.com/RobertDober/lab42_core/blob/master/demo/file.md).
+
+### `if_readable` 
+
+```ruby
+    File.if_readable 'some_file' do | file |  # openes file as readable
+      
+    end
+```
+
+
+### `if_writeable` 
 
 ## Hash
 
