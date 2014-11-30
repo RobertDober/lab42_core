@@ -38,7 +38,7 @@ This allows also for functional composition which is not possible with `if`
     action.assert == :readable_file
 ```
 
-However nothing will happen with the unaccessable file
+However nothing will happen with an unaccessable file
 
 ```ruby
     File.if_readable unaccessable_file do
@@ -58,6 +58,41 @@ However nothing will happen with the unaccessable file
     end
     action.assert == :writable_file
     
+```
+
+However nothing will happen with an unaccessable or solely readable file
+
+```ruby
+    File.if_writable unaccessable_file do
+      action = unexpected!
+    end
+    action.assert == :writable_file
+
+    File.if_writable readable_file do
+      action = unexpected!
+    end
+    action.assert == :writable_file
+```
+
+### as Enumerator
+
+If no block is provided both methods `if_readable` and `if_writeable` are transformed into an Enumerator.
+
+```ruby
+    never = File.if_writable readable_file
+    once  = File.if_writable writable_file
+
+    never.assert.kind_of? Enumerator
+    once.assert.kind_of? Enumerator
+
+    StopIteration.assert.raised? do
+      never.next
+    end
+
+    once.next.assert == writable_file
+    StopIteration.assert.raised? do
+      once.next
+    end
 ```
 
 

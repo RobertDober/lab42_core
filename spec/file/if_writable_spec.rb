@@ -28,19 +28,30 @@ describe File do
         expect( block ).to receive( :to_proc ).and_return block_proc
         File.if_writable path, &block
       end
+
+      it "returns a once executing enumerator" do
+        e = File.if_writable path
+        expect( e ).to be_kind_of Enumerator
+        expect( e.next ).to eq path
+        expect{ e.next }.to raise_error StopIteration
+      end
     end # context 'method'
   end # context file is writable'
 
   context 'file is not writable' do 
+    let( :block_proc ) { ->{ raise RuntimeError, "I shall not be called" } }
     before do
       expect( File ).to receive( :writable? ).with( path ).and_return false
     end
     it 'does not execute the block' do
-      block_proc = ->{ raise RuntimeError, "I shall not be called" }
       expect( block ).to receive(:to_proc).and_return block_proc
       File.if_writable path, &block
-      
     end
-    
+    it 'returns an empty Enumerator' do
+      e = File.if_writable path
+      expect( e ).to be_kind_of Enumerator
+      expect{ e.next }.to raise_error StopIteration
+    end
   end # context 'file is not writable'
+
 end

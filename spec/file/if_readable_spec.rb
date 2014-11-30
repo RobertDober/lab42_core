@@ -27,6 +27,12 @@ describe File do
         expect( block ).to receive( :to_proc ).and_return block_proc
         File.if_readable path, &block
       end
+      it "returns a once executing enumerator" do
+        e = File.if_readable path
+        expect( e ).to be_kind_of Enumerator
+        expect( e.next ).to eq path
+        expect{ e.next }.to raise_error StopIteration
+      end
     end # context 'method'
   end # context file is readable'
 
@@ -39,6 +45,11 @@ describe File do
       expect( block ).to receive(:to_proc).and_return block_proc
       File.if_readable path, &block
       
+    end
+    it 'returns an empty Enumerator' do
+      e = File.if_readable path
+      expect( e ).to be_kind_of Enumerator
+      expect{ e.next }.to raise_error StopIteration
     end
     
   end # context 'file is not readable'
