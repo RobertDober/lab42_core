@@ -1,3 +1,4 @@
+require_relative 'meta'
 class << Dir
   def abs_files glob_para, *rst, &blk
     glob_para = File.join( *glob_para ) if Array === glob_para

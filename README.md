@@ -35,6 +35,13 @@ Can be used after `require 'lab42/core'` or `require 'lab42/core/dir'`
   end
 ```
 
+If only the relative or absolute pathes are needed there are the two variations avaiable:
+
+```ruby
+    Dir.abs_files ...
+    Dir.rel_files ...
+```
+
 For details see the corresponding [QED demo](https://github.com/RobertDober/lab42_core/blob/master/demo/dir.md).
 
 ## Enumerable
@@ -117,6 +124,10 @@ upon call, once it has been transformed by `#to_proc`
 
 
 For details see the corresponding [QED demo](https://github.com/RobertDober/lab42_core/blob/master/demo/fn.md).
+
+## Object
+
+Backport of `#itself` for versions < 2.2
 
 ## OpenObject
 
