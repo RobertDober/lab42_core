@@ -92,7 +92,31 @@ For details see the corresponding [QED demo](https://github.com/RobertDober/lab4
 
 ## Fn
 
-Has been moved into gem [lab42\_more](https://github.com/RobertDober/lab42_more)
+Can be used after `require 'lab42/core/array'` **only**.
+
+Might be moved into gem [lab42\_more](https://github.com/RobertDober/lab42_more) in the future .
+
+API will remain the same, require will change to `require 'lab42_more/fn'` 
+
+### fn like function
+
+```ruby
+    Dir.files [APP_ROOT, 'spec', 'support', '**', '*.rb'], Kernel.fn.require
+
+    Dir.files( %w{.. assets ** *.txt} ).sort_by &File.fn.mtime
+```
+  
+### fm like function/method
+
+```ruby
+    %w{ alpha beta gamma delta }.sort_by &String.fm.size
+```
+
+**N.B.** This only works because the object behind the scenes of `Class#fm` knows how to bind
+upon call, once it has been transformed by `#to_proc` 
+
+
+For details see the corresponding [QED demo](https://github.com/RobertDober/lab42_core/blob/master/demo/fn.md).
 
 ## OpenObject
 

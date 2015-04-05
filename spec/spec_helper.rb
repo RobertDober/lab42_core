@@ -2,6 +2,7 @@ require "codeclimate-test-reporter"
 CodeClimate::TestReporter.start
 
 require_relative "../lib/lab42/core"
+require_relative "../lib/lab42/core/meta"
 
 PROJECT_ROOT = File.expand_path "../..", __FILE__
 Dir[File.join(PROJECT_ROOT,"spec/support/**/*.rb")].each {|f| require f}

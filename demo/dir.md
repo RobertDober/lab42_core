@@ -20,3 +20,25 @@
     }
 ```
 
+#### If No Block Given We Do Something Sensitive (TM)
+
+```ruby
+    fn_sizes = Dir.files %w{.. .. demo fordir ** * }, :size
+    fn_sizes.assert == [2, 2] # Each yielded param is an ary with rel and abs path
+```
+
+### Relative and Absolute Path Variations
+
+#### Relative Path
+
+```ruby
+    rel_dirs = Dir.rel_files dir, :itself
+    rel_dirs.assert == dir_enum.map(&:first)
+```
+
+#### Absolute Path
+
+```ruby
+    abs_dirs = Dir.abs_files dir, :itself
+    abs_dirs.assert == dir_enum.map(&:last)
+```
