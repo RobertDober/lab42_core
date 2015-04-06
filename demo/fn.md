@@ -10,12 +10,12 @@ As this is a little bit more involved than the rest we need to require this func
 
 ### Fn: Functions
 
-Or, in the strange language of OO languages _methods_.
+Or, in the strange patois of OO languages _methods_.
 
 Example:
 
 ```ruby
-    answer = 41.fn.inc
+    answer = 41.fn.succ
     answer.().assert == 42
 ```
 
@@ -46,7 +46,7 @@ Same as above but now:
 
     # And the usual variations
     answer = Fixnum.fm.+ 37
-    answer.(37, 5).assert == 42
+    answer.(5).assert == 42
 
     # ...
     answer = Fixnum.fm.+ 36, 6
@@ -64,7 +64,8 @@ Even error behavior is conserved
 
 ### Earyly vs. Late Binding
 
-In this version there is no choice, late bound parameters **preceed** early bound params.
+
+There is only one thing to remember: **LIFO**, late superseeds early...
 
 ```ruby
     answer = Fixnum.fm.- 1
@@ -86,6 +87,7 @@ Meaning that we can superseed the early provided block by a differnt one:
       .( a: 2, c: 3 ){ |_, o, n| [o, n] }
       .assert == { a: [1, 2], b: 2, c: 3 }
 ```
+
 And, attention for head explosions here, even with rebound blocks:
 
 Let us say we define a _Mapper_ as follows
@@ -101,17 +103,33 @@ Of course it might be useful to have an incrementer
 ```ruby
     incrementer = Array.fm.map(&:succ)
 
-    [1,2].map(&incrementer).assert == [2,3]
+    [[0],[1,2]].map(&incrementer).assert == [ [1],[2,3] ]
 ```
 
 Well naming things is nice, most of the time, but as an accomplished functional
 currying and partial application expert you read code like the following in your sleep
 
 ```ruby
-    [0,1].map(&mapper._(&:succ)).assert == [1,2]
+    [[0,1]].map(&mapper._(&:succ)).assert == [[1,2]]
 ```
 
-That gets us to the general concept of
+And what about this one?
+
+```ruby
+    general_reducer = Enumerable.fm.inject
+    summer          = general_reducer._(&:+)
+    # Now that was baaaad, let us try again:
+    summer          = general_reducer._(&Fixnum.fm.+) # Much hotter, OMG I am sooo funny
+
+    one_two         = [[1, 2]]
+
+    one_two.map(&summer).assert == [3]
+    one_two.map(&summer._(10)).assert == [13]
+
+    # Or being general - got a promotion? - again:
+    one_two.map(&general_reducer._(10,&Fixnum.fm.-)).assert == [7]
+```
+
 
 ### Functional Rebinding
 
@@ -120,14 +138,12 @@ That gets us to the general concept of
 
 ```ruby
     Fixnum.fm.-.tap do | minus |
-      minus.assert.kind_of? Lab42::Behavior
+      minus.assert.kind_of? Lab42::UnboundBehavior
       minus.to_proc.assert.kind_of? Proc
-      minus.arity.assert == 2
     end
 
     43.fn.+.tap do | plus |
       plus.assert.kind_of? Lab42::Behavior
-      plus.arity.assert == 1
     end
 ```
 

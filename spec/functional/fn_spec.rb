@@ -84,5 +84,11 @@ describe Object do
       end
       
     end # context 'partial application of blox'
+
+    # context 'debugging demos', :wip do
+    #   it {
+    #     expect( 41.fn.succ.() ).to eq 42
+    #   }
+    # end # context 'debugging demos'
   end # context 'Object#fn'
 end # describe 'Functional'

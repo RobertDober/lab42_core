@@ -33,10 +33,26 @@ describe Module, :wip do
         it 'can be uses as a block with rebinding; N.B. this is no late binding' do
           expect( [[0], [1,2], [3,4,5]].map(&fm._(&:succ)) ).to eq [[1], [2,3], [4,5,6]]
         end
+
+        context 'can bind with blocks and params as, and when, needed (impmtg: Demo)' do 
+          let( :reducer ){ Enumerable.fm.inject }
+          let( :summer ){ reducer._(&Fixnum.fm.+) }
+
+          it 'sums, all right' do
+            expect( [[1,2]].map(&summer) ).to eq [3]
+          end
+          
+          it 'can be bound very late' do
+            expect( Fixnum.fm.+.(1,41) ).to eq 42
+          end
+          it 'or very early' do
+            expect( Fixnum.fm.+(41,1).() ).to eq 42
+          end
+          
+
+        end # context 'can bind with blocks and params as, and when, needed (impmtg: Demo)'
+
       end # context 'partials'
-
     end # context 'behavior'
-
-
   end # context '#fm'
 end # describe Module

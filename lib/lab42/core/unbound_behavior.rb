@@ -11,14 +11,16 @@ module Lab42
     attr_reader :args, :block, :method
 
     def call *a, &b
-      m = method.bind a.first
-      m.( *(a.drop(1) + args), &(b||block) )
+      available_args = a + args
+      m = method.bind available_args.first
+      m.( *available_args.drop(1), &(b||block) )
     end
 
     def to_proc
       -> *a, &b do
-        m = method.bind a.first
-        m.( *(a.drop(1) + args), &(b||block) )
+        available_args = a + args
+        m = method.bind available_args.first
+        m.( *available_args.drop(1), &(b||block) )
       end
     end
 
