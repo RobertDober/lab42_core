@@ -42,3 +42,13 @@
     abs_dirs = Dir.abs_files dir, :itself
     abs_dirs.assert == dir_enum.map(&:last)
 ```
+
+It is particulary useful for mass requires
+
+```ruby
+   require 'lab42/core/fn'
+   Dir.abs_files %w{.. .. demo forrequire *.rb}, Kernel.fn.require
+   Alpha.assert.kind_of? Module 
+   Beta.assert.kind_of? Module 
+```
+
