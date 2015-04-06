@@ -2,6 +2,12 @@
 
 ## Fn/Fm A Functional Approach
 
+As this is a little bit more involved than the rest we need to require this function explicitely
+
+```ruby
+    require 'lab42/core/fn'
+```
+
 ### Fn: Functions
 
 Or, in the strange language of OO languages _methods_.
@@ -64,6 +70,51 @@ In this version there is no choice, late bound parameters **preceed** early boun
     answer = Fixnum.fm.- 1
     answer.(43).assert == 42
 ```
+
+The same is true for _blocks_
+
+```ruby
+    merger = {a: 1, b: 2}.fn.merge{ |key, old, new| old + new }
+
+    merger.( a: 2, c: 3 ).assert == { a: 3, b: 2, c: 3 }
+```
+
+Meaning that we can superseed the early provided block by a differnt one:
+
+```ruby
+    merger
+      .( a: 2, c: 3 ){ |_, o, n| [o, n] }
+      .assert == { a: [1, 2], b: 2, c: 3 }
+```
+And, attention for head explosions here, even with rebound blocks:
+
+Let us say we define a _Mapper_ as follows
+
+```ruby
+    mapper = Array.fm.map
+```
+
+Hey, we can now map anything, anyhow....
+
+Of course it might be useful to have an incrementer
+
+```ruby
+    incrementer = Array.fm.map(&:succ)
+
+    [1,2].map(&incrementer).assert == [2,3]
+```
+
+Well naming things is nice, most of the time, but as an accomplished functional
+currying and partial application expert you read code like the following in your sleep
+
+```ruby
+    [0,1].map(&mapper._(&:succ)).assert == [1,2]
+```
+
+That gets us to the general concept of
+
+### Functional Rebinding
+
 
 ### Implementation Details
 
