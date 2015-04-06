@@ -13,6 +13,9 @@ module Lab42
 
     def make_callable callable
       return callable if Proc === callable
+      -> *a, &b do
+        callable.(*a, &b)
+      end
     end
 
     def make_message_sender args

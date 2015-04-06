@@ -20,10 +20,6 @@ describe Object do
         expect(instance_add).to be_kind_of Lab42::Behavior
       end
 
-      it 'has arity 1' do
-        expect( instance_add.arity ).to eq 1
-      end
-
       it 'can be converted to a proc' do
         expect( instance_add.to_proc.(1) ).to eq 42
       end
@@ -40,10 +36,6 @@ describe Object do
 
       it 'returns a Lab42::Behavior object too' do
         expect(curried_add).to be_kind_of Lab42::Behavior
-      end
-
-      it 'has arity 0' do
-        expect( curried_add.arity ).to be_zero
       end
 
       it 'can be converted to a proc' do

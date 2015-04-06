@@ -30,7 +30,18 @@ describe Lab42::Meta do
   end # context 'if first argument is a symbol'
   
   context 'if last argument is a Behavior' do 
-    pending "need to spec fn/fm first"
+    let( :a_behavior ){ Lab42::Behavior.new 42, 42.method( :succ ) }
+    
+    it 'returns a proc implementing it' do
+      expect( behavior.( a_behavior ).() ).to eq 43
+    end
+    it 'does not worry about params in front' do
+      expect( behavior.( 42, a_behavior ).() ).to eq 43
+    end
+    it 'unless a block was provided' do
+      a_block = ->{ }
+      expect( behavior.( a_behavior, &a_block ) ).to eq a_block
+    end
 
   end # context 'if last argument is a Behavior'
   

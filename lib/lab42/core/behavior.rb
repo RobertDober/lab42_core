@@ -10,51 +10,29 @@ module Lab42
   class Behavior
     attr_reader :args, :block, :method, :receiver
 
-    extend Forwarder
-    forward_all :call, :to_proc, :[], to: :method
 
+    def call *a, &b
+      method
+        .( *(a + args), &(b||block) )
+    end
+    alias_method :[], :call
 
-    def arity
-      @arity || method.arity
+    def to_proc
+      -> *a, &b do
+        method
+          .( *(a + args), &(b||block) )
+      end
     end
 
+    
     private
     def initialize receiver, method, *args, &block
       @receiver = receiver
       @method   = method
       @args     = args
       @block    = block
-      curry
     end
 
-    def curry
-      return only_block_curry if args.empty?
-      define_arity
-      redefine_method method
-    end
-
-    def define_arity
-      @arity =
-        if method.arity < 1
-          [method.arity + args.size, -1].min
-        elsif method.arity >= args.size
-          method.arity - args.size
-        else
-          raise ArgumentError "#{args.size} args instead of #{method.arity}"
-        end
-    end
-
-    def only_block_curry
-      return unless block
-      redefine_method method
-    end
-
-    def redefine_method old_method
-      @method = 
-        -> *a, &b do
-          old_method.( *(a+args), &(b||block) ) 
-        end
-    end
 
   end # class Behavior
 end # module Lab42
