@@ -31,6 +31,7 @@ describe Lab42::Meta do
   
   context 'if last argument is a Behavior' do 
     pending "need to spec fn/fm first"
+
   end # context 'if last argument is a Behavior'
   
 end # describe Lab42::Meta
