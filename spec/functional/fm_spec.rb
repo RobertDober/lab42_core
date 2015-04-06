@@ -2,7 +2,7 @@ require 'spec_helper'
 
 require 'lab42/core/fn'
 
-describe Module, :wip do
+describe Module do
   context '#fm' do 
     it 'exist' do
       expect( Module.instance_method :fm ).to be_kind_of UnboundMethod
