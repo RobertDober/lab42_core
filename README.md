@@ -14,7 +14,9 @@ Simple Ruby Core Module Extensions (for more see lab42\_more)
 
 ### Lazy Attributes and Memoization
 
-**Memoization** is a, today a little bit forgotten, programming technique protecting against double calcultions.
+#### Memoization
+
+is a, slightly forgotten, programming technique protecting against double calcultions.
 
 This became extremly useful with  [Dynamic Programming](https://en.wikipedia.org/wiki/Dynamic_programming#Dijkstra.27s_algorithm_for_the_shortest_path_problem) .
 
@@ -79,6 +81,25 @@ two different syntaxes
     memoize :f
     
 ```
+
+#### Lazy Attributes
+
+Are just parameterless memoized methods, excatly the same as `let` bindings in [RSpec](http://www.rubydoc.info/gems/rspec-core/RSpec/Core/MemoizedHelpers/ClassMethods#let-instance_method).
+
+```ruby
+    lazy_attr( :config ){ YAML.read config_file }
+```
+
+One could say they are just syntactic sugar for
+
+```ruby
+    memoize def config
+      YAML.read config_file
+    end
+```
+
+One would be correct, but lazy attributes are many (in some of my modules and classes) and have a semantic role often very similar to
+the example above. They are by nature static while methods like the shortest path or fibonacci are highely dynamic.
 
 
 ## Array
