@@ -10,6 +10,16 @@
 
 Simple Ruby Core Module Extensions (for more see lab42\_more)
 
+## Programming Paradigms
+
+### Lazy Attributes and Memoization
+
+**Memoization** is a, today a little bit forgotten, programming technique protecting against double calcultions.
+
+This became extremly useful with  [Dynamic Programming](https://en.wikipedia.org/wiki/Dynamic_programming#Dijkstra.27s_algorithm_for_the_shortest_path_problem) .
+
+A much more simle example is allowing us to express and implement the [Fibonacci Sequence](https://en.wikipedia.org/wiki/Dynamic_programming#Fibonacci_sequence) in the same, some might say naïve way.
+
 ## Array
 
 Can be used after `require 'lab42/core'` or `require 'lab42/core/array'`  
