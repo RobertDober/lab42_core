@@ -23,5 +23,27 @@
 
 ```ruby
     
+      $count = 0
+      class Lazy
+        lazy_attr(  :a ){ $count += 1 }
+        lazy_attr(  :b ){ a.tap{$count += 1}.succ }
+      end
+      lazy = Lazy.new
+      
+      # a is **alwyas** 1
+      # b is **alwyas** 2
+
+      lazy.b
+      lazy.a.assert == 1
+      lazy.b.assert == 2
+
+      lazy.a; lazy.b
+      lazy.a.assert == 1
+      lazy.b.assert == 2
+      $count.assert == 2
+
+      $count = 100
+      lazy.a.assert == 1
+      lazy.b.assert == 2
 ```
 

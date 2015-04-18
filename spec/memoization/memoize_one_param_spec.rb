@@ -1,19 +1,67 @@
 require 'spec_helper'
+describe Object do
 
-describe Module do
+  shared_examples_for 'memoized with one param' do
+    it 'returns 1 for applications with a first value' do
+      expect( subject.a 42 ).to eq 1
+      expect( subject.a 42 ).to eq 1
+    end
+    it 'returns 2 for application with a second value' do
+      expect( subject.a 42 ).to eq 1
+      expect( subject.a 43 ).to eq 2
+      expect( subject.a 42 ).to eq 1
+    end
+  end
 
-  context 'memoized, one param, (read Fibonacci)' do 
+  context 'memoized, one param' do 
 
-    module Fibo extend self
-      memoize def fibo n
-        n < 2 ? n : fibo( n - 1 ) + fibo( n - 2 )
+    context 'class' do 
+      class A
+        attr_reader :count
+        def initialize; @count = 0 end
+        memoize def a n; @count+=1 end
       end
-    end
 
+      let( :subject ){ A.new }
+      it_behaves_like 'memoized with one param' 
 
-    it 'no counting here, if it can compute it without having U 2 wait, it is memoized for sure ;)' do
-      expect( Fibo.fibo 1_000 ).to eq 43466557686937456435688527675040625802564660517371780402481729089536555417949051890403879840079255169295922593080322634775209689623239873322471161642996440906533187938298969649928516003704476137795166849228875 
-    end
-  end # context 'memoized, parameterless methods'
+    end # context 'shared'
 
-end # describe Module
+    context 'module' do 
+      module M
+        attr_reader :count
+        def initialize; @count = 0 end
+        memoize def a n; @count+=1 end
+      end
+
+      let( :subject ){ Class.new.send(:include, M).new }
+      it_behaves_like 'memoized with one param' 
+    end # context 'inline'
+    
+    context 'singleton module' do 
+      module SM extend self
+        attr_reader :count
+        @count = 0
+        memoize def a n; @count+=1 end
+      end
+
+      let( :subject ){ SM }
+      it_behaves_like 'memoized with one param' 
+      
+      
+    end # context 'singleton module'
+
+    context 'extended object' do 
+      module M
+        attr_reader :count
+        @count = 0
+        memoize def a n; @count+=1 end
+      end
+
+      let( :subject ){ Object.new.extend( M ).tap{ |o| o.instance_eval{ @count=0 }}}
+      it_behaves_like 'memoized with one param' 
+      
+    end # context ''
+  end # context 'memoized, one param inline'
+
+end
