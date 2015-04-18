@@ -20,6 +20,67 @@ This became extremly useful with  [Dynamic Programming](https://en.wikipedia.org
 
 A much more simle example is allowing us to express and implement the [Fibonacci Sequence](https://en.wikipedia.org/wiki/Dynamic_programming#Fibonacci_sequence) in the same, some might say naïve way.
 
+Compared to the explicit memoization as shown in the Wikipedia article, which would read as follows in Ruby
+
+```ruby
+  def fibo n, cache=[0, 1]
+    return cache[n] if cache[n]
+    cache[n] = fibo( n.pred, cache ) + fibo( n.pred.pred, cache )
+  end
+```
+
+It is still amazing how the specialized cache initialisation allows us to get rid of the original if statement.
+
+However the general case would read like this
+
+```ruby
+    def f n, cache = {}
+      args_hash = some_hash_fn n  # n is all args here 
+      return cache[args_hash] if cache[args_hash]
+      cache[args_hash] = f_implemenetation( some_fn(n), cache )
+    end
+```
+
+While a memoization mechanisme built into the language allos to write things like
+
+```ruby
+    def_memoized f *args
+      ...
+    end
+
+    def f *args
+      ...
+    end
+    memoize :f
+
+    # Which can be written as
+    memoize \
+      def f *args
+        ...
+      end
+
+   memoized do
+     def f *args
+       ...
+     end
+   end
+```
+
+This gem opts for the `memoize` method in the `Module` class as this allows for
+two different syntaxes
+
+```ruby
+    memoize def f ...
+    end
+
+    #
+    def f ...
+    end
+    memoize :f
+    
+```
+
+
 ## Array
 
 Can be used after `require 'lab42/core'` or `require 'lab42/core/array'`  
