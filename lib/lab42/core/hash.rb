@@ -16,4 +16,12 @@ class Hash
       default
     end
   end
+
+  def fetch! key, *defaults, &defblk
+    default_present = !(defaults.empty? && defblk.nil?)
+    return fetch key unless default_present
+    fetch key do
+      self[ key ] = defblk ? defblk.() : defaults.first
+    end
+  end
 end # class Hash

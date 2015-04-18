@@ -37,6 +37,15 @@ But nothing might happen if there is no key
     end.assert == 42
 ```
 
+### fetch!
+
+```ruby
+    a = {}
+    a.fetch!(:a, 42)
+    a.fetch!(:b){ 43 }
+    a.assert == {a: 42, b: 43}
+```
+
 
 
 

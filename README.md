@@ -12,15 +12,15 @@ Simple Ruby Core Module Extensions (for more see lab42\_more)
 
 ## Programming Paradigms
 
-### Lazy Attributes and Memoization
+### Memoization and Lazy Attributes
 
 #### Memoization
 
 is a, slightly forgotten, programming technique protecting against double calcultions.
 
-This became extremly useful with  [Dynamic Programming](https://en.wikipedia.org/wiki/Dynamic_programming#Dijkstra.27s_algorithm_for_the_shortest_path_problem) .
+This became extremly useful with [Dynamic Programming](https://en.wikipedia.org/wiki/Dynamic_programming#Dijkstra.27s_algorithm_for_the_shortest_path_problem) .
 
-A much more simle example is allowing us to express and implement the [Fibonacci Sequence](https://en.wikipedia.org/wiki/Dynamic_programming#Fibonacci_sequence) in the same, some might say naïve way.
+A much more simle example is allowing us to express and implement the [Fibonacci Sequence](https://en.wikipedia.org/wiki/Dynamic_programming#Fibonacci_sequence) in the same, some might say naïve, way.
 
 Compared to the explicit memoization as shown in the Wikipedia article, which would read as follows in Ruby
 
@@ -99,8 +99,17 @@ One could say they are just syntactic sugar for
 ```
 
 One would be correct, but lazy attributes are many (in some of my modules and classes) and have a semantic role often very similar to
-the example above. They are by nature static while methods like the shortest path or fibonacci are highely dynamic.
+the example above. They are by nature static while methods like the shortest path or fibonacci are highly dynamic.
 
+For details see the corresponding [QED demo](https://github.com/RobertDober/lab42_core/blob/master/demo/memoization.md).
+
+#### Gotchas
+
+Do not, I repeat, **Do not** memoize methods with side effects!
+
+The exception is _cached reading_ as in the example above.
+
+Do not call memoized methods with arguments that cannot be used as Hash keys like e.g. BasicObject instances or other objects not responding to the **original** `hash` method.
 
 ## Array
 
@@ -182,9 +191,22 @@ For details see the corresponding [QED demo](https://github.com/RobertDober/lab4
 
 ## Hash
 
+### #only
+
 ```ruby
   {a: 42, b: 43}.only :a, :c # ===> {a: 42}
 ```
+
+### #fetch! (read fetch and set)
+
+```ruby
+    a = {a: 42}
+    a.fetch!(b, 43) # or a.fetch!(b){43}
+    a == {a: 42, b: 43 } # true
+```
+
+**N.B.** Unlike `Hash#fetch` `Hash#fetch!` will **not** warn you that the block superseeds the default arg if both
+are provided (after all there is a !).
 
 For details see the corresponding [QED demo](https://github.com/RobertDober/lab42_core/blob/master/demo/hash.md).
 
