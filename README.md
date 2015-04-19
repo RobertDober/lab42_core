@@ -1,5 +1,3 @@
-
-
 # lab42\_core
 
 
@@ -12,9 +10,37 @@ Simple Ruby Core Module Extensions (for more see lab42\_more)
 
 ## Programming Paradigms
 
-### Memoization and Lazy Attributes
+### Fn - Functional Access To Methods
 
-#### Memoization
+Can be used after `require 'lab42/core/fn'` **only**.
+
+Might be moved into gem [lab42\_more](https://github.com/RobertDober/lab42_more) in the future .
+
+API will remain the same, require will change to `require 'lab42_more/fn'` 
+
+### fn like function
+
+```ruby
+    Dir.files [APP_ROOT, 'spec', 'support', '**', '*.rb'], Kernel.fn.require
+
+    Dir.files( %w{.. assets ** *.txt} ).sort_by &File.fn.mtime
+```
+  
+#### fm like function/method
+
+```ruby
+    %w{ alpha beta gamma delta }.sort_by &String.fm.size
+```
+
+**N.B.** This only works because the object behind the scenes of `Class#fm` knows how to bind
+upon call, once it has been transformed by `#to_proc` 
+
+
+For details see the corresponding [QED demo](https://github.com/RobertDober/lab42_core/blob/master/demo/fn.md).
+
+#### Memoization and Lazy Attributes
+
+##### Memoization
 
 is a, slightly forgotten, programming technique protecting against double calcultions.
 
@@ -82,7 +108,7 @@ two different syntaxes
     
 ```
 
-#### Lazy Attributes
+##### Lazy Attributes
 
 Are just parameterless memoized methods, excatly the same as `let` bindings in [RSpec](http://www.rubydoc.info/gems/rspec-core/RSpec/Core/MemoizedHelpers/ClassMethods#let-instance_method).
 
@@ -103,7 +129,7 @@ the example above. They are by nature static while methods like the shortest pat
 
 For details see the corresponding [QED demo](https://github.com/RobertDober/lab42_core/blob/master/demo/memoization.md).
 
-#### Gotchas
+##### Gotchas
 
 Do not, I repeat, **Do not** memoize methods with side effects!
 
@@ -111,11 +137,13 @@ The exception is _cached reading_ as in the example above.
 
 Do not call memoized methods with arguments that cannot be used as Hash keys like e.g. BasicObject instances or other objects not responding to the **original** `hash` method.
 
-## Array
+## Core Extensions
+
+### Array
 
 Can be used after `require 'lab42/core'` or `require 'lab42/core/array'`  
 
-### flatten\_once
+#### #flatten\_once
 
 ```ruby
     [].flatten_once.assert.empty?
@@ -126,7 +154,7 @@ Can be used after `require 'lab42/core'` or `require 'lab42/core/array'`
 
 For details see the corresponding [QED demo](https://github.com/RobertDober/lab42_core/blob/master/demo/array.md).
 
-## Dir
+### Dir
 
 Can be used after `require 'lab42/core'` or `require 'lab42/core/dir'`  
 
@@ -144,16 +172,16 @@ If only the relative or absolute pathes are needed there are the two variations 
 
 For details see the corresponding [QED demo](https://github.com/RobertDober/lab42_core/blob/master/demo/dir.md).
 
-## Enumerable
+### Enumerable
 
-### grep2
+#### grep2
 
 ```ruby
   enum.grep2 expr # ===>
   enum.partition{ |ele| expr === ele }
 ```
 
-### to\_proc
+#### to\_proc
 
 And also `Enumerable#to\_proc` as e.g.
 
@@ -170,15 +198,15 @@ And also `Enumerable#to\_proc` as e.g.
 
 For details see the corresponding [QED demo](https://github.com/RobertDober/lab42_core/blob/master/demo/enumerable.md).
 
-## File
+### File
 
-### `expand_local_path`
+#### #expand_local_path
 
 `expand_local_path` to get rid of the `__FILE__` inside `expand_path`.
 
 For details see the corresponding [QED demo](https://github.com/RobertDober/lab42_core/blob/master/demo/file.md).
 
-### `if_readable` 
+#### #if_readable
 
 ```ruby
     File.if_readable 'some_file' do | file |  # openes file as readable
@@ -187,17 +215,17 @@ For details see the corresponding [QED demo](https://github.com/RobertDober/lab4
 ```
 
 
-### `if_writeable` 
+#### #if_writeable
 
-## Hash
+### Hash
 
-### #only
+#### #only
 
 ```ruby
   {a: 42, b: 43}.only :a, :c # ===> {a: 42}
 ```
 
-### #fetch! (read fetch and set)
+#### #fetch! (read fetch and set)
 
 ```ruby
     a = {a: 42}
@@ -210,39 +238,12 @@ are provided (after all there is a !).
 
 For details see the corresponding [QED demo](https://github.com/RobertDober/lab42_core/blob/master/demo/hash.md).
 
-## Fn
 
-Can be used after `require 'lab42/core/array'` **only**.
-
-Might be moved into gem [lab42\_more](https://github.com/RobertDober/lab42_more) in the future .
-
-API will remain the same, require will change to `require 'lab42_more/fn'` 
-
-### fn like function
-
-```ruby
-    Dir.files [APP_ROOT, 'spec', 'support', '**', '*.rb'], Kernel.fn.require
-
-    Dir.files( %w{.. assets ** *.txt} ).sort_by &File.fn.mtime
-```
-  
-### fm like function/method
-
-```ruby
-    %w{ alpha beta gamma delta }.sort_by &String.fm.size
-```
-
-**N.B.** This only works because the object behind the scenes of `Class#fm` knows how to bind
-upon call, once it has been transformed by `#to_proc` 
-
-
-For details see the corresponding [QED demo](https://github.com/RobertDober/lab42_core/blob/master/demo/fn.md).
-
-## Object
+### Object
 
 Backport of `#itself` for versions < 2.2
 
-## OpenObject
+### OpenObject
 
 Immutable Open Objects
 
@@ -266,3 +267,14 @@ All _modifications_ just return a new instance.
 ```
 
 For details see the corresponding [QED demo](https://github.com/RobertDober/lab42_core/blob/master/demo/open_object.md).
+
+## Tools
+
+### Console Tools
+
+
+Can be used **only** after 'lab42/core/console_tools'.`
+
+**N.B.** Never use in production code or applications. This code is extremly oriented console monkeypatching core classes massively.
+
+This part is documented in [QED Console Tools](https://github.com/RobertDober/lab42_core/blob/master/demo/console_tools.md).

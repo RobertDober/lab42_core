@@ -1,4 +1,8 @@
 
+# 0.3.2 2015-04-19
+
+* Console Tools
+
 # 0.3.1 2015-04-18
 
 * Lazy Attributes
