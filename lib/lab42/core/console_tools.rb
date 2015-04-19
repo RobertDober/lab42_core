@@ -1,5 +1,6 @@
 # No Namespaces Here
 
+require_relative '../core'
 require_relative 'fn'
 
 def B *a, &b

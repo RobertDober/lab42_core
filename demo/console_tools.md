@@ -19,6 +19,9 @@ If you agree with the above assesments, just load your console with `lab42/core/
     
     # method map
     values.mm(:[], :name).assert == %w{ git ruby vim }
+
+    # same approach for filter, we need stronger stuff though here
+    values.fm(f(:==, 'ruby', f(:[], __, :name) )).assert == [{id: 2, name: 'ruby'}]
 ```
 
 
