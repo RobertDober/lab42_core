@@ -19,6 +19,23 @@
       $count.assert  == 8
 ```
 
+#### A Shortcut for `memoize def`
+
+```ruby
+    $count = 0
+    memo :double do | x |
+      $count += 1
+      2 * x
+    end
+
+    double(21).assert == 42
+    double( 1).assert ==  2
+    double(21).assert == 42
+    $count.assert     ==  2
+
+```
+
+
 ### Lazy Attributes
 
 ```ruby
