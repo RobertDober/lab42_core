@@ -10,7 +10,9 @@ Simple Ruby Core Module Extensions (for more see lab42\_more)
 
 ## Programming Paradigms
 
-### Fn - Functional Access To Methods
+### Functional
+
+#### Fn/Fm - Functional Access To Methods
 
 Can be used after `require 'lab42/core/fn'` **only**.
 
@@ -18,7 +20,7 @@ Might be moved into gem [lab42\_more](https://github.com/RobertDober/lab42_more)
 
 API will remain the same, require will change to `require 'lab42_more/fn'` 
 
-### fn like function
+##### fn like function
 
 ```ruby
     Dir.files [APP_ROOT, 'spec', 'support', '**', '*.rb'], Kernel.fn.require
@@ -26,7 +28,7 @@ API will remain the same, require will change to `require 'lab42_more/fn'`
     Dir.files( %w{.. assets ** *.txt} ).sort_by &File.fn.mtime
 ```
   
-#### fm like function/method
+##### fm like function/method
 
 ```ruby
     %w{ alpha beta gamma delta }.sort_by &String.fm.size
@@ -37,6 +39,20 @@ upon call, once it has been transformed by `#to_proc`
 
 
 For details see the corresponding [QED demo](https://github.com/RobertDober/lab42_core/blob/master/demo/fn.md).
+
+## Behave
+
+We exposed methods as _functions_ in the previous chapter. However we are subject to sematic confusion
+with terms like _methods_, _procedures_, _lambdas_ and _functions_. 
+
+Is it not time to abstract a little bit?
+
+Enter **Behave**, which is everything that behaves, right?
+
+Let us see how that behaves.
+
+
+For details see the corresponding [QED demo](https://github.com/RobertDober/lab42_core/blob/master/demo/behave.md).
 
 #### Memoization and Lazy Attributes
 
