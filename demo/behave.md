@@ -17,7 +17,7 @@ Thus we need to require this explicitely:
 It can be used as with the `#to_proc` kludge, which is a syntactic necessity unless someone
 write _Behavior Aware Code_ ;). 
 
-But the main idea is to write _Behavior Aware Code_ BAC(TM).
+But the main idea is to write _Behavior Aware Code_ -- BAC(TM).
 
 Example:
 
@@ -54,19 +54,30 @@ Now use it Luke!
 
 ##### But what if we want the receiver to become an argument?
 
+or
+
+##### Call Time vs. Definition Time
+
 Some jargon might come in handy:
 
 ```ruby
     B(43, :-).(1).assert == 42
     #  ^       ^
     #  |       |
-    #  |       +--------------  late arguments (or runtime arguments)
+    #  |       +--------------  late or call time arguments
     #  |        
-    #  +----------------------  early arguments (or compile time arguments)       
+    #  +----------------------  early or definition time arguments
 ```
 
-This means, that for `B` a symbol at first means _send message__ to first _late argument_, and anything
-else means, _send message_ to first _early argument_.
+This means, that for `B` a symbol as first _definition time_ argument means _send message_ to first _call time_ argument 
+and anything means
+_send message_ to first _definition time_ argument.
 
+##### Meaning?
 
+That you really need to understand the following rules of _call time_ argument passing in order to be able
+to apply `B`.
+
+If you think that it is not worth to do so, you might want to [skip to](https://github.com/RobertDober/lab42_core/blob/master/demo/functors.md).
+######
 
