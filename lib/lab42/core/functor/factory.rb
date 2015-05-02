@@ -8,5 +8,12 @@ module Lab42
         Functor.new *a, &b
       end
     end # module Factory
-  end # class Functor
+  end
+  class MethodFunctor < Functor
+    module Factory extend self
+      def method_missing *a, &b
+        MethodFunctor.new *a, &b
+      end
+    end
+  end # class MethodFunctor
 end # module Lab42
