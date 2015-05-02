@@ -40,19 +40,29 @@ upon call, once it has been transformed by `#to_proc`
 
 For details see the corresponding [QED demo](https://github.com/RobertDober/lab42_core/blob/master/demo/fn.md).
 
-## Behave
+## Functors
 
 We exposed methods as _functions_ in the previous chapter. However we are subject to sematic confusion
 with terms like _methods_, _procedures_, _lambdas_ and _functions_. 
 
 Is it not time to abstract a little bit?
 
-Enter **Behave**, which is everything that behaves, right?
+Enter **Functors**
 
-Let us see how that behaves.
+Whenever you can call it, it should be a **Functor** !
+
+There are two main namespace factories for functors - available upon `require 'lab42/core/functor'` 
+
+`F`, the truley functional way, and `M` the truely methodical way. As a matter of fact the latter is just a convenience factory for the former:
+
+```ruby
+    F.-( F, 10 ).(52).assert == 42 # F is used as a place holder too
+    # and
+    M.-( 10 ).( 52 ).assert == 42
+```
 
 
-For details see the corresponding [QED demo](https://github.com/RobertDober/lab42_core/blob/master/demo/behave.md).
+For details see the corresponding [QED demo](https://github.com/RobertDober/lab42_core/blob/master/demo/functors.md).
 
 #### Memoization and Lazy Attributes
 
