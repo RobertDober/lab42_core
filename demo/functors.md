@@ -118,7 +118,7 @@ You might want to know, why the additional `.()` at the end of the pipeline?
 
 Well pipes are lazy, that is the **huge** array above will be iterated over only once.
 
-With a block like `Proc&lt<;rom composed fns>`
+With a block like `Proc&lt<;from composed fns>`
 
 IOW `Functor#|` just returns a new `Functor` therefore the following is maybe the most 
 _logical_ code.
@@ -128,8 +128,29 @@ _logical_ code.
 ```
 
 
+#### Killer Feature Iterables
+
+We love to write code like this, because it accords to our way of thinking:
+
+```ruby
+    some_data = [] # Huge in reality
+    []
+      .select(&:odd?)
+      .map{ |idx| db["person"].find( idx ) }
+      .select{ |p| p.age > 42 }
+      .map{ |p| p.values_at( :first_name, :last_name ).join( ' ' ) }
+```
+
+This is highly ineffeciant unless we use a truely [lazy collection](https://github.com/RobertDober/lab42_streams) 
+
+Functional Composition cannot achieve the same level of efficency, but almost
+
+```ruby
+    ( M.select(&F.odd?) | M.map(&(F.[](db, 'person') | M.find 
+```
 
 
+### Etc.
 
 #### Demonstrating the code from the README
 
