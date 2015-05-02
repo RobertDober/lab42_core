@@ -111,8 +111,22 @@ If `#|` is not defined on your initial value this syntax can be used too:
 
 
 ```ruby
-    (dramatis_personae | select_name | F.size ).assert == [4 | 6 | 1]
+    (dramatis_personae | select_name | F.size ).().assert == [4, 6, 1]
 ```
+
+You might want to know, why the additional `.()` at the end of the pipeline?
+
+Well pipes are lazy, that is the **huge** array above will be iterated over only once.
+
+With a block like `Proc&lt<;rom composed fns>`
+
+IOW `Functor#|` just returns a new `Functor` therefore the following is maybe the most 
+_logical_ code.
+
+```ruby
+    ( select_name | F.size | F.*(2) ).( dramatis_personae ).assert == [8, 12, 2] 
+```
+
 
 
 
