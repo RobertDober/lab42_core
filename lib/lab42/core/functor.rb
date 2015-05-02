@@ -16,4 +16,16 @@ module Lab42
       @args     = args.drop 1
     end
   end # class Functor
+
+  class MethodFunctor < Functor
+    def call *a, &b
+      a.first.send( message, *(args + a.drop(1)), &(block || b) )
+    end
+    private
+    def initialize message, *args, &block
+      @block   = block
+      @message = message
+      @args    = args
+    end
+  end # class MethodFunctor
 end
