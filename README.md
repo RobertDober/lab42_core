@@ -180,6 +180,13 @@ Can be used after `require 'lab42/core'` or `require 'lab42/core/array'`
 
 For details see the corresponding [QED demo](https://github.com/RobertDober/lab42_core/blob/master/demo/array.md).
 
+#### #merge
+
+Merge two or more arrays by ignoring missing values (kinda zip.flatten_once) or with a logic provided by a block
+
+rcode
+  [0,5,10].merge( [2, 4, 5], [3,9] ){ |a,b,c| 
+
 ### Dir
 
 Can be used after `require 'lab42/core'` or `require 'lab42/core/dir'`  
