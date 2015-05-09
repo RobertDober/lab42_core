@@ -16,7 +16,7 @@ Thus we need to require this explicitely:
 Theoretically the `Functor` is a *composable* Abstraction of Behavior, whre Behavior stands for
 whatever can be called, *proc*, *bound methods* or whenever `#call` is defined.
 
-Hence it's motto: Whenever you can call it, it should be a **Functor** !  
+Hence its motto: Whenever you can call it, it should be a **Functor** !  
 
 ### Great and how do I get it?
 
@@ -43,11 +43,11 @@ distinguish them accordingly.
 
 ```ruby
     F.-( 43 ).(1).assert == 42
-    #  ^       ^
-    #  |       |
-    #  |       +--------------  IT arguments
-    #  |        
-    #  +----------------------  CT arguments
+    #    ^     ^
+    #    |     |
+    #    |     +--------------  IT arguments
+    #    |      
+    #    +--------------------  CT arguments
 ```
 
 Astute observers of the universe, talking about the same Lt. Cdr. again, will observe that
@@ -57,7 +57,7 @@ the `F` factory does not work so well with some _standard_ Ruby applications.
     (10..12).map(&F.-(1)).assert == [ -9, -10, -11 ] # oops, probably not what you want
 ```
 
-Placeholders to the resque. 
+Placeholders to the rescue. 
 
 ```ruby
     (10..12).map(&F.-(F,1)).assert == [*9..11]
@@ -87,70 +87,6 @@ Not very useful so far, but what about that?
     select_name = M.map( &M[:name] )
     select_name.( dramatis_personae ).assert == %w{Data Picard Q}
 ```
-
-### Functional Composition
-
-and to go beyond
-
-```ruby
-    name_size = M[:name] + M.size
-    select_name_size = M.map( &name_size )
-  
-    select_name_size.( dramatis_personae ).assert == [4, 6, 1]
-```
-
-#### Pipelines
-
-Pipelines are nice semantic sugar for much more readable functional composition
-
-```ruby
-    P( dramatis_personae, select_name, F.size ).assert == [4, 6, 1]
-```
-
-If `#|` is not defined on your initial value this syntax can be used too:
-
-
-```ruby
-    (dramatis_personae | select_name | F.size ).().assert == [4, 6, 1]
-```
-
-You might want to know, why the additional `.()` at the end of the pipeline?
-
-Well pipes are lazy, that is the **huge** array above will be iterated over only once.
-
-With a block like `Proc&lt<;from composed fns>`
-
-IOW `Functor#|` just returns a new `Functor` therefore the following is maybe the most 
-_logical_ code.
-
-```ruby
-    ( select_name | F.size | F.*(2) ).( dramatis_personae ).assert == [8, 12, 2] 
-```
-
-
-#### Killer Feature Iterables
-
-We love to write code like this, because it accords to our way of thinking:
-
-```ruby
-    some_data = [] # Huge in reality
-    []
-      .select(&:odd?)
-      .map{ |idx| db["person"].find( idx ) }
-      .select{ |p| p.age > 42 }
-      .map{ |p| p.values_at( :first_name, :last_name ).join( ' ' ) }
-```
-
-This is highly ineffeciant unless we use a truely [lazy collection](https://github.com/RobertDober/lab42_streams) 
-
-Functional Composition cannot achieve the same level of efficency, but almost
-
-```ruby
-    ( M.select(&F.odd?) | M.map(&(F.[](db, 'person') | M.find 
-```
-
-
-### Etc.
 
 #### Demonstrating the code from the README
 
