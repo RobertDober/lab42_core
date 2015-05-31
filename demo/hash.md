@@ -46,6 +46,37 @@ But nothing might happen if there is no key
     a.assert == {a: 42, b: 43}
 ```
 
+### select_values
 
+```ruby
+    h = {a: nil, b: 42, c: false}
+    h.select_values(:itself).assert == {b: 42}
 
+    {a: 1, b: 2, c: 4}.select_values(&:odd?).assert == {a: 1}
+    {a: 1, b: 2, c: 4}.select_values(:odd?).assert == {a: 1}
+    {a: 1, b: 2, c: 4}.select_values(:<, 2).assert == {a: 1}
+    {a: 1, b: 2, c: 4}.select_values{ |v| v < 2 }.assert == {a: 1}
+```
+
+### reject_values
+
+```ruby
+    h = {a: nil, b: 42, c: false}
+    h.reject_values(:itself).assert == {a: nil, c: false}
+
+    {a: 1, b: 2, c: 4}.reject_values(&:even?).assert == {a: 1}
+    {a: 1, b: 2, c: 4}.reject_values(:even?).assert == {a: 1}
+    {a: 1, b: 2, c: 4}.reject_values(:>, 1).assert == {a: 1}
+    {a: 1, b: 2, c: 4}.reject_values{ |v| v > 1 }.assert == {a: 1}
+    
+```
+
+### without
+
+```ruby
+    h = {a: 1, b: 2, c: 3}
+  
+    h.without( :b, :c, :d ).assert == {a: 1}
+    h.assert == {a: 1, b: 2, c: 3}
+```
 

@@ -1,6 +1,6 @@
 require 'b_helper'
 
-describe Behave, :wip do 
+describe 'Behave' do 
  
   context "arity is relative" do 
     it 'works for 1' do
