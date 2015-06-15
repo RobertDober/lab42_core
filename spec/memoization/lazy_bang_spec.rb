@@ -23,6 +23,6 @@ describe Object do
   end
 
   it 'has lazy ?' do
-    expect( attr.a! ).to eq 2
+    expect( attr.a? ).to eq 2
   end
 end # describe Object
