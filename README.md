@@ -23,7 +23,7 @@ API will remain the same, require will change to `require 'lab42_more/fn'`
 ##### fn like function
 
 ```ruby
-    Dir.files [APP_ROOT, 'spec', 'support', '**', '*.rb'], Kernel.fn.require
+    Dir.files [APP_ROOT, 'spec', 'support', '**', '*.rb'], &Kernel.fn.require
 
     Dir.files( %w{.. assets ** *.txt} ).sort_by &File.fn.mtime
 ```
@@ -40,16 +40,22 @@ upon call, once it has been transformed by `#to_proc`
 
 For details see the corresponding [QED demo](https://github.com/RobertDober/lab42_core/blob/master/demo/fn.md).
 
-## Behave
+#### Behave or B for Message Sending
 
-We exposed methods as _functions_ in the previous chapter. However we are subject to sematic confusion
-with terms like _methods_, _procedures_, _lambdas_ and _functions_. 
+This is a more general approach than `fn` or `fm` as we do not even know the class of the future receiver of the
+message.
 
-Is it not time to abstract a little bit?
+The subtle difference can be made clear with an example
 
-Enter **Behave**, which is everything that behaves, right?
+```ruby
+    adder = B( :+ )
+    # can be used for Fixnums
+    adder.(1,41) # --> 42
+    # or Arrays
+    adder.(%w/a b/, %w&c d&) #--> %w%a b c d%
+```
 
-Let us see how that behaves.
+Which can of course not be accomplished by `Fixnum.fm.+` 
 
 
 For details see the corresponding [QED demo](https://github.com/RobertDober/lab42_core/blob/master/demo/behave.md).

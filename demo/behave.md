@@ -7,11 +7,10 @@
 First of all we do not want to impose this code for someone who wants to use the less sophisticated features
 of `lab42_core` only. 
 
-Thus we need to require this explicitely:
+Thus we need to require this explicitly:
 
 ```ruby
-    require 'lab42/core/b'      # or
-    require 'lab42/core/behave' # for the chatty ones
+    require 'lab42/core/fn'
 ```
 
 It can be used as with the `#to_proc` kludge, which is a syntactic necessity unless someone
@@ -36,19 +35,14 @@ Now use it Luke!
     [*0..9].my_map(B(:+, 2)).assert == [*2..11]
 ```
 
-### Is this fn/fm stuff related?
+### The Difference with fn/fm
 
-You guess it is, or if you do not want to take guesses, you just believe me it is.
-Why should you believe me? Well you should not, you should only believe your eyes!
-
-So let my show:
+The subtle difference can be made clear with an example
 
 ```ruby
-    require 'lab42/core/fn'
-    inc2    = Fixnum.fm.+ 2
-    doubler = 2.fn.*
-    dec     = B(:-, 1)
-
-    (inc2 + doubler + dec).(1).assert == 5
+    adder = B( :+ )
+    # can be used for Fixnums
+    adder.(1,41) # --> 42
+    # or Arrays
+    adder.(%w/a b/, %w&c d&) #--> %w%a b c d%
 ```
-

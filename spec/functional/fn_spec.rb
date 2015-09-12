@@ -17,7 +17,7 @@ describe Object do
       let( :instance_add ){ 41.fn.+  }
 
       it 'returns a Lab42::Behavior object' do
-        expect(instance_add).to be_kind_of Lab42::Behavior
+        expect(instance_add).to be_kind_of Lab42::Behavior::BoundBehavior
       end
 
       it 'can be converted to a proc' do
@@ -35,7 +35,7 @@ describe Object do
       let( :curried_add ){ 41.fn.+ 1  } 
 
       it 'returns a Lab42::Behavior object too' do
-        expect(curried_add).to be_kind_of Lab42::Behavior
+        expect(curried_add).to be_kind_of Lab42::Behavior::BoundBehavior
       end
 
       it 'can be converted to a proc' do

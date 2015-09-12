@@ -138,12 +138,11 @@ And what about this one?
 
 ```ruby
     Fixnum.fm.-.tap do | minus |
-      minus.assert.kind_of? Lab42::UnboundBehavior
+      minus.assert.kind_of? Lab42::Behavior::UnboundBehavior
       minus.to_proc.assert.kind_of? Proc
     end
 
     43.fn.+.tap do | plus |
-      plus.assert.kind_of? Lab42::Behavior
+      plus.assert.kind_of? Lab42::Behavior::BoundBehavior
     end
 ```
-

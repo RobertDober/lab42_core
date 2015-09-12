@@ -1,4 +1,5 @@
 require_relative 'behavior/proxy'
+require_relative 'b'
  
 class Object
   def fn
