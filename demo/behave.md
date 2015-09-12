@@ -46,3 +46,11 @@ The subtle difference can be made clear with an example
     # or Arrays
     adder.(%w/a b/, %w&c d&) #--> %w%a b c d%
 ```
+
+While
+
+```ruby
+    TypeError.assert.raised? do
+      Fixnum.fm.+.( [], [] )
+    end
+```
