@@ -15,19 +15,7 @@ module Lab42::Memoizer extend self
   
 end # module Lab42::Memoizer
 
-module Lab42::Unmemoizer
-  def unmemoize_memo method_name, *args
-    ivar_name = @__lAB_42__memoization_cache_4ysr5zu[ method_name ]
-    raise ArgumentError, "not memoized, method #{method_name}" unless ivar_name
-    return unless instance_variable_defined? ivar_name
-    return instance_variable_set ivar_name, {} if args.empty?
-    instance_variable_get( ivar_name ).delete args
-  end
-end # module Lab42::Unmemoizer
-
 class Module
-
-  include Lab42::Unmemoizer
 
   def lazy_attr sym, &blk
     raise ArgumentError, 'missing initialization block' unless blk
@@ -35,18 +23,20 @@ class Module
   end
 
   def memoize sym
-    include Lab42::Unmemoizer
     orig_method = instance_method sym
     ivar_name = Lab42::Memoizer.make_ivar_name sym
-    cache = @__lAB_42__memoization_cache_4ysr5zu ||= {}
-    cache[sym] = ivar_name
 
     define_method sym do |*args|
       instance_variable_set ivar_name, {} unless instance_variable_defined? ivar_name
       instance_variable_get( ivar_name ).fetch! args do
-        # Not cached yet!!!
+        # Not cached yet, caching by means of fetch!
         orig_method.bind( self ).( *args )
       end
+    end
+
+    define_method "unmemoize_memo_#{sym}" do | *args |
+      return instance_variable_set ivar_name, {} if args.empty?
+      instance_variable_get( ivar_name ).delete args
     end
   end
 

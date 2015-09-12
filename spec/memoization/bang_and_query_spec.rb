@@ -23,21 +23,21 @@ describe Object do
       it "of count" do
         counter.count
         expect( counter.count ).to eq 1
-        counter.unmemoize_memo :count
+        counter.unmemoize_memo_count
         expect( counter.count ).to eq 2
         expect( counter.count ).to eq 2
       end
       it "of count!" do
         counter.count!
         expect( counter.count! ).to eq 10
-        counter.unmemoize_memo :count!
+        counter.unmemoize_memo_count!
         expect( counter.count! ).to eq 20
         expect( counter.count! ).to eq 20
       end
       it "of count?" do
         counter.count?
         expect( counter.count? ).to eq 100
-        counter.unmemoize_memo :count
+        counter.unmemoize_memo_count?
         expect( counter.count? ).to eq 200
         expect( counter.count? ).to eq 200
       end

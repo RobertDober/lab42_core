@@ -17,7 +17,7 @@ describe Object do
       it "is unemoizing a memoized value" do
         counter.count
         expect( counter.count ).to eq 1
-        counter.unmemoize_memo :count
+        counter.unmemoize_memo_count
         expect( counter.count ).to eq 2
       end
       
@@ -26,7 +26,7 @@ describe Object do
       it "is unemoizing a memoized value -- but only once" do
         counter.count
         expect( counter.count ).to eq 1
-        counter.unmemoize_memo :count
+        counter.unmemoize_memo_count
         expect( counter.count ).to eq 2
         expect( counter.count ).to eq 2
       end
@@ -53,7 +53,7 @@ describe Object do
         counter.count :beta
         expect( counter.count :alpha ).to eq 1
         expect( counter.count :beta ).to eq 1
-        counter.unmemoize_memo :count
+        counter.unmemoize_memo_count
         expect( counter.count :alpha ).to eq 2
         expect( counter.count :beta ).to eq 2
       end
@@ -62,7 +62,7 @@ describe Object do
         counter.count :beta
         expect( counter.count :alpha ).to eq 1
         expect( counter.count :beta ).to eq 1
-        counter.unmemoize_memo :count, :alpha
+        counter.unmemoize_memo_count :alpha
         expect( counter.count :alpha ).to eq 2
         expect( counter.count :beta ).to eq 1
       end

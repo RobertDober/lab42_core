@@ -31,11 +31,11 @@ describe Memo do
     expect( testee.upcase 'alpha' ).to eq 'ALPHA'
     expect( testee.upcase "beta" ).to eq 'BETA'
     expect( testee.count ).to eq 'alpha' => 1, 'beta' => 1
-    testee.unmemoize_memo :upcase, 'alpha'
+    testee.unmemoize_memo_upcase 'alpha'
     expect( testee.upcase 'alpha' ).to eq 'ALPHA'
     expect( testee.upcase "beta" ).to eq 'BETA'
     expect( testee.count ).to eq 'alpha' => 2, 'beta' => 1
-    testee.unmemoize_memo :upcase
+    testee.unmemoize_memo_upcase
     expect( testee.upcase 'alpha' ).to eq 'ALPHA'
     expect( testee.upcase "beta" ).to eq 'BETA'
     expect( testee.count ).to eq 'alpha' => 3, 'beta' => 2
