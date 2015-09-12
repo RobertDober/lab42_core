@@ -35,3 +35,20 @@ Now use it Luke!
 ```ruby
     [*0..9].my_map(B(:+, 2)).assert == [*2..11]
 ```
+
+### Is this fn/fm stuff related?
+
+You guess it is, or if you do not want to take guesses, you just believe me it is.
+Why should you believe me? Well you should not, you should only believe your eyes!
+
+So let my show:
+
+```ruby
+    require 'lab42/core/fn'
+    inc2    = Fixnum.fm.+ 2
+    doubler = 2.fn.*
+    dec     = B(:-, 1)
+
+    (inc2 + doubler + dec).(1).assert == 5
+```
+
