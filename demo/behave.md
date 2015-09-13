@@ -32,6 +32,7 @@ Example:
 Now use it Luke!
 
 ```ruby
+    require 'lab42/core/b'
     [*0..9].my_map(B(:+, 2)).assert == [*2..11]
 ```
 
@@ -54,3 +55,27 @@ While `Fixnum.fm.+` cannot do that
       Fixnum.fm.+.( [], [] )
     end
 ```
+
+### Some Behavior
+
+#### Negation
+
+```ruby
+  odd = Fixnum.fm.even?.negated
+  odd.(1).assert == true 
+  odd.(2).assert == false
+```
+
+The following is available thanx to the aforeused:
+
+```ruby
+    require 'lab42/core/b'
+```
+
+#### Identity
+
+```ruby
+    Identity.(42).assert == 42
+```
+
+

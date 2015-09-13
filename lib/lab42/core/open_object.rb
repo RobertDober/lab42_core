@@ -42,6 +42,14 @@ class OpenObject
     def inherited *args, **kwds, &blk
       raise RuntimeError, "I prefer delegation to inheritance, if you do not, MP me"
     end
+
+    def merging *args
+      new **(
+        args.inject Hash.new do |r, arg|
+          r.merge arg.to_hash
+        end
+      )
+    end
   end
 end # class OpenObject
 

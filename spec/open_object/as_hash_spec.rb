@@ -32,6 +32,9 @@ describe OpenObject do
     it 'cannot assign though' do
       expect( ->{ subject[:a]=45} ).to raise_error( NoMethodError )
     end
+    it "no it really cannot" do
+      expect{ subject.a = 45 }.to raise_error( NoMethodError )
+    end
     
   end # context 'Hashy behavior'
 end 

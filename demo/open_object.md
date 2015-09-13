@@ -14,9 +14,6 @@ Immutable OpenStruct like objects, implementing `Enumerable` and other goodies.
 
 ## Immutability
 
-If you want to get rid of the namespace, you can require `lab42/open_object` instead of
-`lab42/core/open_object`.
-
 All _modifications_ just return a new instance.
 
 ```ruby
@@ -26,6 +23,33 @@ All _modifications_ just return a new instance.
   y.to_hash.assert == {a: 44, b: 43}
   x.a.assert       ==  42
 ```
+
+## Merging
+
+As `OpenObject` is an immutable class, merging becomes a real important aspect. We want to merge all parameters 
+according to the `#to_hash` protocol.
+
+```ruby
+    require 'ostruct'
+    a = OpenObject.new a: 42, c: 44
+    b = OpenObject.new a: 41, b: 42
+    c = {a: 40, b: 41, c: 42}
+
+    ab = OpenObject.merging(a , b)
+    ab.assert.kind_of? OpenObject
+    ab.to_hash.assert == {a:41, b:42, c:44}
+    
+    abc = OpenObject.merging(a, b, c, a)
+    abc.to_hash.assert == {a: 42, b: 41, c:44}
+```
+
+And of course all concerned objects are immutable:
+
+```ruby
+    a.to_hash.assert == {a:42, c:44}
+    b.to_hash.assert == {a:41, b:42} #...
+```
+
 
 ## Relationship with hashes
 

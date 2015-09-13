@@ -71,6 +71,13 @@ But nothing might happen if there is no key
     
 ```
 
+### replace_values
+
+```ruby
+    
+```
+
+
 ### without
 
 ```ruby
