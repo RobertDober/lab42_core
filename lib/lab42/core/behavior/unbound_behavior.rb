@@ -1,3 +1,4 @@
+require_relative 'composition'
 module Lab42
   module Behavior
 
@@ -8,7 +9,14 @@ module Lab42
     # represented by the calls to `Object#fn` or `Module#fm`. 
     # Did I tell you yet? It is sooooo out not be functional...
     class UnboundBehavior
+      include Behavior
       attr_reader :args, :block, :method
+      
+      # Increment method's arity by one as we need to bind the
+      # first argument to the method
+      def arity
+        method.arity.succ
+      end
 
       def call *a, &b
         available_args = a + args

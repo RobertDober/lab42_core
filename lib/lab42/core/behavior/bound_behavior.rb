@@ -1,5 +1,5 @@
 require 'forwarder'
-
+require_relative 'composition'
 module Lab42
   module Behavior
     # Thank youn my dear Proxy, for sending me all the information
@@ -9,7 +9,11 @@ module Lab42
     # represented by the calls to `Object#fn` or `Module#fm`. 
     # Did I tell you yet? It is sooooo out not be functional...
     class BoundBehavior
+      include Behavior
       attr_reader :args, :block, :method, :receiver
+
+      extend Forwarder
+      forward :arity, to: :method
 
       def call *a, &b
         method

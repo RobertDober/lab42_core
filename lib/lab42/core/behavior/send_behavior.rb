@@ -1,14 +1,10 @@
 module Lab42
   module Behavior
-
-    # Thank youn my dear Proxy, for sending me all the information
-    # I, the clever guy, who is having all the fun, will make best
-    # use of it by being an extremly, yes I said *extremly* clever
-    # callable object representing the methods or instance methods
-    # represented by the calls to `Object#fn` or `Module#fm`. 
-    # Did I tell you yet? It is sooooo out not be functional...
     class SendBehavior
+      include Behavior
       attr_reader :args, :block, :method
+
+      def arity; -1 end
 
       def call rcv, *a, &b
         rcv.send( method, *(a+args), &(b||block) )

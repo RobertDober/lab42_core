@@ -60,6 +60,10 @@ Which can of course not be accomplished by `Fixnum.fm.+`
 
 For details see the corresponding [QED demo](https://github.com/RobertDober/lab42_core/blob/master/demo/behave.md).
 
+#### All Behavior is Composable
+
+The above methods all return instances of `Behavior` and `Behavor` has a much richer API than Ruby's core _callables_ like `Proc` or `Method` 
+
 #### Memoization and Lazy Attributes
 
 ##### Memoization
