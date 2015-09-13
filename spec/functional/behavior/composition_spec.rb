@@ -16,6 +16,7 @@ context Lab42::Behavior do
 
     context "of two Behaviors" do 
       shared_examples_for "two behaviors" do
+        let( :subject ){ lhs | rhs }
         it "is a Behavior" do
           expect( subject ).to be_kind_of described_class
         end
@@ -23,24 +24,90 @@ context Lab42::Behavior do
           expect( subject.( 1 ) ).to be_even
         end
       end
-      context "of the same kind:" do 
+
+      context "of the same kind:" do
         context "SendBehavior" do 
-          let( :subject ){ B(:+, 1) | B(:*, 2) }
+          let( :lhs ){ B(:+, 1) }
+          let( :rhs ){ B(:*, 2) }
           it_behaves_like "two behaviors"
         end # context "two SendBehaviors"
         context "BoundBehavior" do 
-          let( :subject ){ 1.fn.+ | 2.fn.* }
+          let( :lhs ){ 1.fn.+ }
+          let( :rhs ){ 2.fn.* }
           it_behaves_like "two behaviors"
         end # context "two BoundBehaviors"
         context "UnboundBehavior" do 
-          let( :subject ){ Fixnum.fm.+( 1 ) | Fixnum.fm.*( 2 ) }
+          let( :lhs ){ Fixnum.fm.+( 1 ) }
+          let( :rhs ){ Fixnum.fm.*( 2 ) }
           it_behaves_like "two behaviors"
         end # context "two UnboundBehaviors"
         context "ProcBehavior" do
-          let( :subject ){ described_class::ProcBehavior.new{|x|x.succ} | described_class::ProcBehavior.new{|x|x*2} }
+          let( :lhs ){ described_class::ProcBehavior.new{|x|x.succ} }
+          let( :rhs ){ described_class::ProcBehavior.new{|x|x*2} }
           it_behaves_like "two behaviors"
         end
       end # context "it can combine two beahviors of the same kind"
+      context "of different kinds" do 
+        context "Send and..." do 
+          let( :lhs ){ B(:+,1) }
+          context "Bound" do 
+            let( :rhs ){ 2.fn.* }
+            it_behaves_like "two behaviors"
+          end # context "Send and Bound"
+          context "Unbound" do 
+            let( :rhs ){ Fixnum.fm.*(2) }
+            it_behaves_like "two behaviors"
+          end # context "Send and Unbound"
+          context "λ" do
+            let( :rhs ){ ->(x){x*2} }
+            it_behaves_like "two behaviors"
+          end # context "Send and λ"
+          context "Proc" do 
+            let( :rhs ){ ->(x){x*2}.to_behavior }
+            it_behaves_like "two behaviors"
+          end # context "Send and Proc"
+        end # context "Send and..."
+
+        context "Unbound and ..." do
+          let( :lhs ){ Fixnum.fm.+ 1 }
+          context "Send" do 
+            let( :rhs ){ B(:*,2) }
+            it_behaves_like "two behaviors"
+          end # context "Unbound and Send"
+          context " Bound" do 
+            let( :rhs ){ 2.fn.* }
+            it_behaves_like "two behaviors"
+          end
+          context "Unbound and Proc" do 
+            let( :rhs ){ ->(x){x*2}.to_behavior }
+            it_behaves_like "two behaviors"
+          end # context "Unbound and Proc"
+          context "Unbound and λ" do 
+            let( :rhs ){ ->(x){x*2} }
+            it_behaves_like "two behaviors"
+          end # context "Unbound and λ"
+        end # context "Unbound and ..."
+
+        context "Bound and..." do 
+          let( :lhs ){ 1.fn.+ }
+          context "Send" do
+            let( :rhs ){ B(:*,2)  }
+            it_behaves_like "two behaviors"
+          end # context "Bound and Send"
+          context "Unbound" do 
+            let( :rhs ){ Fixnum.fm.*(2) }
+            it_behaves_like "two behaviors"
+          end # context "Bound and Unbound"
+          context "Proc" do 
+            let( :rhs ){ ->(x){x*2} }
+            it_behaves_like "two behaviors"
+          end # context "Bound and Proc"
+          context "Bound and λ" do 
+            let( :rhs ){ ->(x){x*2}}
+            it_behaves_like "two behaviors"
+          end # context "Bound and Proc"
+        end # context "Bound and..."
+      end # context "of different kinds"
     end # context "of two Behaviors"
   end # context "Composition"
-end # context Lab42::Behavior::Composition
+end # contsext Lab42::Behavior::Composition

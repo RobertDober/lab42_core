@@ -16,3 +16,14 @@ Example:
     [1,2,3].map(&( inc2 | double | dec )).assert == [ 5, 7, 9 ]
 ```
 
+We can of course mix all kind of Behavior
+
+```ruby
+    marker  = B(:<<, :mark)
+    reverse = Array.fm.reverse
+    doubler = [:a, :b].fn.* 2
+
+    (doubler | marker | reverse).().assert == [:mark, :b, :a, :b, :a]
+```
+
+
