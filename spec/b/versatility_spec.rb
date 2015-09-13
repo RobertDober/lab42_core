@@ -10,4 +10,10 @@ describe 'Behave' do
       expect( (1..3).inject(&B(:+)) ).to eq 6
     end
   end # context "arity is relative"
+
+  context "LIFO Priniciple" do 
+    it 'addes early params at the end' do
+      expect( B(:<<, :end).([:begin]) ).to eq [:begin, :end]
+    end
+  end # context "LIFO Priniciple"
 end # describe Behave, :wip

@@ -1,5 +1,6 @@
 require 'forwarder'
 require_relative 'behavior/proxy'
+require_relative 'behavior/send_behavior'
 
 module Lab42
   # Thank youn my dear Proxy, for sending me all the information

@@ -47,7 +47,7 @@ The subtle difference can be made clear with an example
     adder.(%w/a b/, %w&c d&) #--> %w%a b c d%
 ```
 
-While
+While `Fixnum.fm.+` cannot do that
 
 ```ruby
     TypeError.assert.raised? do
