@@ -1,6 +1,19 @@
 require_relative 'meta'
 class Hash
 
+  def fetch! key, *defaults, &defblk
+    default_present = !(defaults.empty? && defblk.nil?)
+    return fetch key unless default_present
+    fetch key do
+      self[ key ] = defblk ? defblk.() : defaults.first
+    end
+  end
+  
+  def merge_rec *keys, limit: nil, limits: nil, &valblock
+    raise ArgumentError, "must not pass in limit: and limits: keyword parameters" if limit && limits
+    return Lab42::Meta::Hash.hash_merge_rec self, keys, valblock, limit || limits
+  end
+
   def only *args
     args.inject Hash.new do | r, k |
       if has_key? k
@@ -12,12 +25,12 @@ class Hash
   end
 
   def reject_values *behavior, &beh
-    beh = Lab42::Meta::Behavior *behavior, &beh
+    beh = Lab42::Meta::Behavior.behavior *behavior, &beh
     reject{ |_, v| beh.(v) }
   end
 
   def select_values *behavior, &beh
-    beh = Lab42::Meta::Behavior *behavior, &beh
+    beh = Lab42::Meta::Behavior.behavior *behavior, &beh
     select{ |_, v| beh.(v) }
   end
 
@@ -36,14 +49,6 @@ class Hash
       else
         r.merge k => v
       end
-    end
-  end
-
-  def fetch! key, *defaults, &defblk
-    default_present = !(defaults.empty? && defblk.nil?)
-    return fetch key unless default_present
-    fetch key do
-      self[ key ] = defblk ? defblk.() : defaults.first
     end
   end
 end # class Hash

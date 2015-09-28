@@ -2,21 +2,21 @@ require_relative 'meta'
 class << Dir
   def abs_files glob_para, *rst, &blk
     glob_para = File.join( *glob_para ) if Array === glob_para
-    blk = Lab42::Meta::Behavior *rst, &blk
+    blk = Lab42::Meta::Behavior.behavior *rst, &blk
 
     __files__ :last, glob_para, &blk
   end
 
   def files glob_para, *rst, &blk
     glob_para = File.join( *glob_para ) if Array === glob_para
-    blk = Lab42::Meta::Behavior *rst, &blk
+    blk = Lab42::Meta::Behavior.behavior *rst, &blk
 
     __files__ :both, glob_para, &blk
   end
 
   def rel_files glob_para, *rst, &blk
     glob_para = File.join( *glob_para ) if Array === glob_para
-    blk = Lab42::Meta::Behavior *rst, &blk
+    blk = Lab42::Meta::Behavior.behavior *rst, &blk
 
     __files__ :first, glob_para, &blk
   end
