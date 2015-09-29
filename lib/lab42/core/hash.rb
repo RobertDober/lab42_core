@@ -9,9 +9,9 @@ class Hash
     end
   end
   
-  def merge_rec *keys, limit: nil, limits: nil, &valblock
+  def replace_rec *keys, limit: nil, limits: nil, &valblock
     raise ArgumentError, "must not pass in limit: and limits: keyword parameters" if limit && limits
-    return Lab42::Meta::Hash.hash_merge_rec self, keys, valblock, limit || limits
+    return Lab42::Meta::Hash.hash_replace_rec self, keys, valblock, limit || limits
   end
 
   def only *args

@@ -74,7 +74,7 @@ A misnamer, should have been called `reject_by_value`
     {a: 1, b: 2, c: 4}.reject_values{ |v| v > 1 }.assert == {a: 1}
 ```
 
-### merge_rec
+### replace_rec
 
 Recursive Replacement
 
@@ -83,7 +83,7 @@ Recursive Replacement
 ```ruby
 
     a = {a: 42, x: {a: 43}}
-    b = a.merge_rec( :a, &:succ )
+    b = a.replace_rec( :a, &:succ )
     a.assert == {a: 42, x: {a: 43}}
     b.assert == {a: 43, x: {a: 44}}
     
@@ -93,14 +93,14 @@ Recursive Replacement
 
 ```ruby
     a = {1 => 42, 2 => 43, :x => { 1 => 44 }} 
-    b = a.merge_rec( 1, 2, &:succ )
+    b = a.replace_rec( 1, 2, &:succ )
     b.assert == { 1 => 43, 2 => 44, :x => { 1 => 45 } }
 ``` 
 
 Keys are passed into the block
 ```ruby
     a = {1 => 42, 2 => 43, :x => { 1 => 44 }} 
-    b = a.merge_rec( 1, 2 ){ |val, key| 2*val + key }
+    b = a.replace_rec( 1, 2 ){ |val, key| 2*val + key }
     b.assert == { 1 => 85, 2 => 88, :x => { 1 => 89 } }
 ``` 
 
@@ -108,7 +108,7 @@ Keys are passed into the block
 
 ```ruby
     a = {a: 1, x: {a: 2, x:{a: 3}}}
-    a.merge_rec( :a, limit: 2, &:pred ).
+    a.replace_rec( :a, limit: 2, &:pred ).
       assert == {a: 0, x: {a: 1, x:{a: 3}}}
     
 ``` 
@@ -117,10 +117,21 @@ Limits can be chosen per key
 
 ```ruby
     a = {a: 1, b: 10, x: {a: 2, x:{a: 3, b: 20}}}
-    a.merge_rec( :a, :b, limits: {b: 1}, &:pred ).
+    a.replace_rec( :a, :b, limits: {b: 1}, &:pred ).
       assert == {a: 0, b: 9, x: {a: 1, x:{a: 2, b: 20}}}
     
 ``` 
+
+#### Endless recursion is avoided
+
+Simply by not recursing into replaced chunks of the hash
+
+```ruby
+      subhashes = { a: 1, x: { a: 2 } }
+      repl = ->{{a: 100}}
+      subhashes.replace_rec(:a, &repl).assert == { a: {a: 100}, x: { a: {a: 100}}}
+```
+
 ### without
 
 ```ruby
