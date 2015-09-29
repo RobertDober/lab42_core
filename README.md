@@ -264,6 +264,31 @@ are provided (after all there is a !).
 
 For details see the corresponding [QED demo](https://github.com/RobertDober/lab42_core/blob/master/demo/hash.md).
 
+#### replace_rec
+
+Recursive Replacement
+
+##### Original Object untouched of course
+
+```ruby
+
+    a = {a: 42, x: {a: 43}}
+    b = a.replace_rec( :a, &:succ )
+    a.assert == {a: 42, x: {a: 43}}
+    b.assert == {a: 43, x: {a: 44}}
+    
+```
+
+For bulk replacements and how to specify limits, please refer to [QED demo](https://github.com/RobertDober/lab42_core/blob/master/demo/hash.md).
+
+#### without
+
+```ruby
+    h = {a: 1, b: 2, c: 3}
+  
+    h.without( :b, :c, :d ).assert == {a: 1}
+    h.assert == {a: 1, b: 2, c: 3}
+```
 
 ### Object
 
