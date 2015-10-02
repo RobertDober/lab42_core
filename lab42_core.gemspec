@@ -5,7 +5,7 @@ Gem::Specification.new do |s|
   s.name        = 'lab42_core'
   s.version     = version
   s.summary     = 'Simple Ruby Core Module Extensions (for more see lab42_more)'
-  s.description = %{Extending Array, Hash, File, Enumerable with convenience methods, conceptual changes have been moved into lab42_more} 
+  s.description = %{Functional Access to Methods - Memoization - Extending Array, Hash, File, Enumerable with convenience methods, conceptual changes have been moved into lab42_more} 
   s.authors     = ["Robert Dober"]
   s.email       = 'robert.dober@gmail.com'
   s.files       = Dir.glob("lib/**/*.rb")
