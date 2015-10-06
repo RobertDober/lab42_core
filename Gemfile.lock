@@ -16,13 +16,20 @@ GEM
     coderay (1.1.0)
     diff-lcs (1.2.5)
     docile (1.1.5)
+    ffi (1.9.10-java)
     forwarder2 (0.2.0)
     json (1.8.3)
+    json (1.8.3-java)
     method_source (0.8.2)
     pry (0.10.2)
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
       slop (~> 3.4)
+    pry (0.10.2-java)
+      coderay (~> 1.1.0)
+      method_source (~> 0.8.1)
+      slop (~> 3.4)
+      spoon (~> 0.0)
     pry-nav (0.2.4)
       pry (>= 0.9.10, < 0.11.0)
     qed (2.9.2)
@@ -47,10 +54,13 @@ GEM
       simplecov-html (~> 0.10.0)
     simplecov-html (0.10.0)
     slop (3.6.0)
+    spoon (0.0.4)
+      ffi
     travis-lint (2.0.0)
       json
 
 PLATFORMS
+  java
   ruby
 
 DEPENDENCIES

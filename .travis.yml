@@ -11,7 +11,8 @@ rvm:
   - "2.2.1"
   - "2.2.2"
   - "2.2.3"
-  - "jruby-9.0.1.0"
+  # Add jruby when issue #3371 is fixed https://github.com/jruby/jruby/issues/3371
+  # - "jruby-9.0.1.0"
 
 install: 
   - bundle install
