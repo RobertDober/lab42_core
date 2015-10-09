@@ -25,7 +25,7 @@ module Lab42
       end
 
       def to_proc
-        -> *a, &b do
+        proc do |*a, &b|
           available_args = a + args
           method.bind( available_args.first )
           .( *available_args.drop(1), &(b||block) )

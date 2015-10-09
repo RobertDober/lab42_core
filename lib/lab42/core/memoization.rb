@@ -1,4 +1,5 @@
 require_relative 'hash'
+require 'securerandom'
 
 module Lab42::Memoizer extend self
   def make_ivar_name from_sym

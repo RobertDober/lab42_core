@@ -27,6 +27,20 @@ describe Object do
 
     end # context 'shared'
 
+    context 'class (explicit form)' do 
+      class AE
+        attr_reader :count
+        def initialize; @count = 0 end
+        memoize def a n
+          @count += 1
+        end
+      end
+
+      let( :subject ){ AE.new }
+      it_behaves_like 'memo' 
+
+    end # context 'shared'
+
     context 'module' do 
       module M
         attr_reader :count
