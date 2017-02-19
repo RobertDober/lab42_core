@@ -20,7 +20,7 @@ describe Lab42::Behavior do
     end # describe UnboundBehavior
 
     describe described_class::UnboundBehavior do 
-      let( :subject ){ Fixnum.fm.even?  }
+      let( :subject ){ Integer.fm.even?  }
       it_behaves_like "negated behavior" 
     end # describe UnboundBehavior
 

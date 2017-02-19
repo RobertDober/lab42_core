@@ -49,13 +49,13 @@ The subtle difference can be made clear with an example
 
 ```ruby
     adder = B( :+ )
-    # can be used for Fixnums
+    # can be used for Integers
     adder.(1,41) # --> 42
     # or Arrays
     adder.(%w/a b/, %w&c d&) #--> %w%a b c d%
 ```
 
-Which can of course not be accomplished by `Fixnum.fm.+` 
+Which can of course not be accomplished by `Integer.fm.+` 
 
 
 For details see the corresponding [QED demo](https://github.com/RobertDober/lab42_core/blob/master/demo/behave.md).

@@ -37,8 +37,8 @@ context Lab42::Behavior do
           it_behaves_like "two behaviors"
         end # context "two BoundBehaviors"
         context "UnboundBehavior" do 
-          let( :lhs ){ Fixnum.fm.+( 1 ) }
-          let( :rhs ){ Fixnum.fm.*( 2 ) }
+          let( :lhs ){ Integer.fm.+( 1 ) }
+          let( :rhs ){ Integer.fm.*( 2 ) }
           it_behaves_like "two behaviors"
         end # context "two UnboundBehaviors"
         context "ProcBehavior" do
@@ -55,7 +55,7 @@ context Lab42::Behavior do
             it_behaves_like "two behaviors"
           end # context "Send and Bound"
           context "Unbound" do 
-            let( :rhs ){ Fixnum.fm.*(2) }
+            let( :rhs ){ Integer.fm.*(2) }
             it_behaves_like "two behaviors"
           end # context "Send and Unbound"
           context "λ" do
@@ -69,7 +69,7 @@ context Lab42::Behavior do
         end # context "Send and..."
 
         context "Unbound and ..." do
-          let( :lhs ){ Fixnum.fm.+ 1 }
+          let( :lhs ){ Integer.fm.+ 1 }
           context "Send" do 
             let( :rhs ){ B(:*,2) }
             it_behaves_like "two behaviors"
@@ -95,7 +95,7 @@ context Lab42::Behavior do
             it_behaves_like "two behaviors"
           end # context "Bound and Send"
           context "Unbound" do 
-            let( :rhs ){ Fixnum.fm.*(2) }
+            let( :rhs ){ Integer.fm.*(2) }
             it_behaves_like "two behaviors"
           end # context "Bound and Unbound"
           context "Proc" do 

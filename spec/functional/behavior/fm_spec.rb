@@ -20,7 +20,7 @@ describe Module do
       end
 
       it 'can be used as a block itself' do
-        expect( digits.map(&Fixnum.fm.succ) ).to eq [*1..10]
+        expect( digits.map(&Integer.fm.succ) ).to eq [*1..10]
       end
 
       context 'partials' do 
@@ -36,17 +36,17 @@ describe Module do
 
         context 'can bind with blocks and params as, and when, needed (impmtg: Demo)' do 
           let( :reducer ){ Enumerable.fm.inject }
-          let( :summer ){ reducer._(&Fixnum.fm.+) }
+          let( :summer ){ reducer._(&Integer.fm.+) }
 
           it 'sums, all right' do
             expect( [[1,2]].map(&summer) ).to eq [3]
           end
           
           it 'can be bound very late' do
-            expect( Fixnum.fm.+.(1,41) ).to eq 42
+            expect( Integer.fm.+.(1,41) ).to eq 42
           end
           it 'or very early' do
-            expect( Fixnum.fm.+(41,1).() ).to eq 42
+            expect( Integer.fm.+(41,1).() ).to eq 42
           end
           
 
