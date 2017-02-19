@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    lab42_core (0.4)
+    lab42_core (0.5.0)
       forwarder2 (~> 0.2)
 
 GEM
@@ -11,56 +11,46 @@ GEM
       ansi
     ansi (1.5.0)
     brass (1.2.1)
-    codeclimate-test-reporter (0.4.8)
-      simplecov (>= 0.7.1, < 1.0.0)
-    coderay (1.1.0)
-    diff-lcs (1.2.5)
+    codeclimate-test-reporter (1.0.5)
+      simplecov
+    coderay (1.1.1)
+    diff-lcs (1.3)
     docile (1.1.5)
-    ffi (1.9.10-java)
     forwarder2 (0.2.0)
-    json (1.8.3)
-    json (1.8.3-java)
+    json (2.0.3)
     method_source (0.8.2)
-    pry (0.10.2)
+    pry (0.10.4)
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
       slop (~> 3.4)
-    pry (0.10.2-java)
-      coderay (~> 1.1.0)
-      method_source (~> 0.8.1)
-      slop (~> 3.4)
-      spoon (~> 0.0)
     pry-nav (0.2.4)
       pry (>= 0.9.10, < 0.11.0)
     qed (2.9.2)
       ansi
       brass
-    rspec (3.3.0)
-      rspec-core (~> 3.3.0)
-      rspec-expectations (~> 3.3.0)
-      rspec-mocks (~> 3.3.0)
-    rspec-core (3.3.2)
-      rspec-support (~> 3.3.0)
-    rspec-expectations (3.3.1)
+    rspec (3.5.0)
+      rspec-core (~> 3.5.0)
+      rspec-expectations (~> 3.5.0)
+      rspec-mocks (~> 3.5.0)
+    rspec-core (3.5.4)
+      rspec-support (~> 3.5.0)
+    rspec-expectations (3.5.0)
       diff-lcs (>= 1.2.0, < 2.0)
-      rspec-support (~> 3.3.0)
-    rspec-mocks (3.3.2)
+      rspec-support (~> 3.5.0)
+    rspec-mocks (3.5.0)
       diff-lcs (>= 1.2.0, < 2.0)
-      rspec-support (~> 3.3.0)
-    rspec-support (3.3.0)
-    simplecov (0.10.0)
+      rspec-support (~> 3.5.0)
+    rspec-support (3.5.0)
+    simplecov (0.13.0)
       docile (~> 1.1.0)
-      json (~> 1.8)
+      json (>= 1.8, < 3)
       simplecov-html (~> 0.10.0)
     simplecov-html (0.10.0)
     slop (3.6.0)
-    spoon (0.0.4)
-      ffi
     travis-lint (2.0.0)
       json
 
 PLATFORMS
-  java
   ruby
 
 DEPENDENCIES
@@ -70,8 +60,8 @@ DEPENDENCIES
   pry (~> 0.10)
   pry-nav (~> 0.2)
   qed (~> 2.9)
-  rspec (~> 3.2)
+  rspec (~> 3.5)
   travis-lint (~> 2.0)
 
 BUNDLED WITH
-   1.10.6
+   1.14.4

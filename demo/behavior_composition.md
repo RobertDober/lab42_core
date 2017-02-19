@@ -11,7 +11,7 @@ Example:
 ```ruby
     double  = 2.fn.*
     inc2    = 2.fn.+
-    dec     = Fixnum.fm.- 1
+    dec     = Integer.fm.- 1
 
     [1,2,3].map(&( inc2 | double | dec )).assert == [ 5, 7, 9 ]
 ```

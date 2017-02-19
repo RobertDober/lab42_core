@@ -42,17 +42,17 @@ The subtle difference can be made clear with an example
 
 ```ruby
     adder = B( :+ )
-    # can be used for Fixnums
+    # can be used for Integers
     adder.(1,41) # --> 42
     # or Arrays
     adder.(%w/a b/, %w&c d&) #--> %w%a b c d%
 ```
 
-While `Fixnum.fm.+` cannot do that
+While `Integer.fm.+` cannot do that
 
 ```ruby
     TypeError.assert.raised? do
-      Fixnum.fm.+.( [], [] )
+      Integer.fm.+.( [], [] )
     end
 ```
 
@@ -61,7 +61,7 @@ While `Fixnum.fm.+` cannot do that
 #### Negation
 
 ```ruby
-  odd = Fixnum.fm.even?.negated
+  odd = Integer.fm.even?.negated
   odd.(1).assert == true 
   odd.(2).assert == false
 ```

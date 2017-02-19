@@ -1,5 +1,5 @@
-require "codeclimate-test-reporter"
-CodeClimate::TestReporter.start
+# require "codeclimate-test-reporter"
+# CodeClimate::TestReporter.start
 
 require_relative "../lib/lab42/core"
 require_relative "../lib/lab42/core/meta"
