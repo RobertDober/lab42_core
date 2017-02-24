@@ -8,6 +8,7 @@ class Hash
       self[ key ] = defblk ? defblk.() : defaults.first
     end
   end
+  alias_method :fetch_or_set, :fetch!
   
   def replace_rec *keys, limit: nil, limits: nil, &valblock
     raise ArgumentError, "must not pass in limit: and limits: keyword parameters" if limit && limits
