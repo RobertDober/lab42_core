@@ -14,5 +14,5 @@ install:
 script: 
   - bundle exec rspec spec
   - bundle exec qed demo
-  - CODECLIMATE_LAB42CORE_TOKEN=${CODECLIMATE_REPO_TOKEN} bundle exec codeclimate-test-reporter
+  - CODECLIMATE_REPO_TOKEN=${CODECLIMATE_LAB42CORE_TOKEN} bundle exec codeclimate-test-reporter
 
