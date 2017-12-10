@@ -9,6 +9,8 @@
 
 Simple Ruby Core Module Extensions (for more see lab42\_more)
 
+** Attention v0.6.0 pushes functional behavior to [lab42_function](https://github/RobertDober/lab42_function)**
+
 ## Programming Paradigms
 
 ### Functional

@@ -41,22 +41,22 @@ Same as above but now:
 
 
 ```ruby
-    answer = Integer.fm.+
+    answer = Fixnum.fm.+
     answer.(38, 4).assert == 42
 
     # And the usual variations
-    answer = Integer.fm.+ 37
+    answer = Fixnum.fm.+ 37
     answer.(5).assert == 42
 
     # ...
-    answer = Integer.fm.+ 36, 6
+    answer = Fixnum.fm.+ 36, 6
     answer.().assert == 42
 ```
 
 Even error behavior is conserved
 
 ```ruby
-    answer = Integer.fm.+
+    answer = Fixnum.fm.+
     ArgumentError.assert.raised? do
       answer.(1, 2, 3)
     end
@@ -68,7 +68,7 @@ Even error behavior is conserved
 There is only one thing to remember: **LIFO**, late superseeds early...
 
 ```ruby
-    answer = Integer.fm.- 1
+    answer = Fixnum.fm.- 1
     answer.(43).assert == 42
 ```
 
@@ -119,7 +119,7 @@ And what about this one?
     general_reducer = Enumerable.fm.inject
     summer          = general_reducer._(&:+)
     # Now that was baaaad, let us try again:
-    summer          = general_reducer._(&Integer.fm.+) # Much hotter, OMG I am sooo funny
+    summer          = general_reducer._(&Fixnum.fm.+) # Much hotter, OMG I am sooo funny
 
     one_two         = [[1, 2]]
 
@@ -127,7 +127,7 @@ And what about this one?
     one_two.map(&summer._(10)).assert == [13]
 
     # Or being general - got a promotion? - again:
-    one_two.map(&general_reducer._(10,&Integer.fm.-)).assert == [7]
+    one_two.map(&general_reducer._(10,&Fixnum.fm.-)).assert == [7]
 ```
 
 
@@ -137,7 +137,7 @@ And what about this one?
 ### Implementation Details
 
 ```ruby
-    Integer.fm.-.tap do | minus |
+    Fixnum.fm.-.tap do | minus |
       minus.assert.kind_of? Lab42::Behavior::UnboundBehavior
       minus.to_proc.assert.kind_of? Proc
     end
