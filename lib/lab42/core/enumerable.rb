@@ -1,4 +1,13 @@
 module Enumerable
+
+  def find_with_value default_value=nil, &blk
+    each do | val |
+      val_prime = blk.(val)
+      return val_prime if val_prime
+    end
+    default_value
+  end
+
   def grep2 expr
     partition{ |ele| expr === ele }
   end

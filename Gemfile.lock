@@ -65,4 +65,4 @@ DEPENDENCIES
   travis-lint (~> 2.0)
 
 BUNDLED WITH
-   1.14.4
+   1.16.0

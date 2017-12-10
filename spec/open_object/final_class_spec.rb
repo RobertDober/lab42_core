@@ -1,4 +1,3 @@
-require 'spec_helper'
 require 'lab42/core/open_object'
 
 describe OpenObject do 
@@ -6,6 +5,6 @@ describe OpenObject do
     described_class
   end
   context 'cannot be subclassed' do
-    it{ expect( ->{c = Class.new( subject )} ).to raise_error, "RuntimeError: I prefer delegation" }
+    it{ expect( ->{ Class.new( subject )} ).to raise_error( RuntimeError, %r{I prefer delegation} ) }
   end
 end
