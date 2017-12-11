@@ -48,8 +48,6 @@ class << Dir
       last_param.()
     when :both
       [ frst_param, last_param.() ]
-    else
-      raise ArgumentError, "Lazy selection must be called with :first, :last or :both, but was with #{selector.inspect}"
     end
   end
 end

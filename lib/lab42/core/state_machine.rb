@@ -39,8 +39,6 @@ module Lab42::Core::StateMachine
     case match.handler
     when Proc
       instance_exec(match, &match.handler)
-    when UnboundMethod
-      match.handler.bind(self).(match)
     end
   end
 

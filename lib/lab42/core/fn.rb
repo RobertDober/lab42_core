@@ -11,9 +11,3 @@ class Module
     Lab42::Behavior::Proxy.new self, fm: true
   end
 end
-
-class Regex
-  def fn
-    method :match
-  end
-end

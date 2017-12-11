@@ -1,10 +1,6 @@
 module Lab42::Core::StateMachine::Tools extend self
 
 
-  def begin_state_id
-    @__begin_state_id__ ||= "BEGIN_#{SecureRandom.hex}"
-  end
-
   def end_state_id
     @__end_state_id__ ||= "END_#{SecureRandom.hex}"
   end

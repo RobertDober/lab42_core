@@ -9,8 +9,6 @@ def stub_dir_with_content spec, *content
   allow( Dir ).to receive(:glob){ |glob|
     if glob == spec
       content
-    else
-      []
     end
   }
 end
