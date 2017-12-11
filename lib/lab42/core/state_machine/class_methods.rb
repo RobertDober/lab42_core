@@ -11,6 +11,11 @@ module Lab42::Core::StateMachine::ClassMethods
     __register__ from_state, [trigger, handler]
   end
 
+  def after_last_input *handler, &handler_block
+    handler = T.define_handler(handler, handler_block)
+    __register__ T.end_state_id, handler
+  end
+
   
   private
 
