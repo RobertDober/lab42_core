@@ -1,6 +1,5 @@
 require "lab42/core/record"
 context Kernel.method(:Record) do
-  Missing = Lab42::Core::RecordImplementation::RequiredKeysMissing
   context "simple case" do
     let :implementation do
       Record(:name, :age, sex: :female)
@@ -23,7 +22,12 @@ context Kernel.method(:Record) do
     end
 
     it "needs all required values" do
-      expect{ implementation.new(name: "me") }.to raise_error(Missing, /missing required keys: \[:age\]/ )
+      expect{ implementation.new(name: "me") }.to raise_error(ArgumentError, /missing required keys: \[:age\]/ )
+    end
+
+    it "does not accept other values" do
+      expect{ implementation.new(unknown: 1, name: "me", age: 0) }.to raise_error(ArgumentError, /forbidden args: \[:unknown\]/ )
+      
     end
   end
 end

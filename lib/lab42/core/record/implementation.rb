@@ -1,10 +1,9 @@
 class Lab42::Core::RecordImplementation
-  RequiredKeysMissing = Class.new RuntimeError
 
 
   private
   def initialize(**kwds)
-    self.class.__check_required_!(kwds.keys)
+    self.class.__check_args_!(kwds.keys)
     __initialize_(kwds, self.class.__defaults_)
   end
 
