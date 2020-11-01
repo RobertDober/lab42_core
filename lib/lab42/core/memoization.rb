@@ -42,7 +42,7 @@ class Module
   end
 
   def memo *args, &blk
-    define_method *args, &blk
+    define_method(*args, &blk)
     memoize args.first
   end
 end

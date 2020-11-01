@@ -1,3 +1,7 @@
+# 0.4.0 202?-??-??
+
+* Record
+* Move from qed gem to speculate_about gem
 
 # 0.3.2 2015-04-19
 

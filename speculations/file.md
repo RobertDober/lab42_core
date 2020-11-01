@@ -8,12 +8,12 @@
 Instead of writing e.g. `File.expand_path File.join('..', 'a', 'b'), __FILE__ )` 
 you can write `File.expand_local_path{ %w{a b} }`. 
 
-Of course if you want to count on the omnipresence of `/` as a file separator , as so many seem to do
+Of course if you want to count on the omnipresence of `/` as a file separator, as so many seem to do
 nowadays you can write code like `File.expand_local_path{'a/b'}` 
 
-```ruby
-    File.expand_local_path{ %w{a b} }.assert ==
-      File.expand_path( File.join( %w{.. a b} ), __FILE__ )
+```ruby :example
+    expect(File.expand_local_path{ %w{a b} })
+      .to eq(File.expand_path( File.join( %w{.. a b} ), __FILE__ ))
 ```
 
 ### if\_readable
@@ -21,78 +21,80 @@ nowadays you can write code like `File.expand_local_path{'a/b'}`
 Instead of writing an `if` we can pass a block to the `File.if_readable` method.
 This allows also for functional composition which is not possible with `if` 
 
+```ruby :include
+    let(:forfile) { File.join %w{speculations forfile } }
+    let(:readable_file) { File.join forfile, "readable"}
+    let(:writable_file) { File.join forfile, "writable"}
+    let(:unaccessable_file) { File.join forfile, "unaccessable"}
+```
 
-```ruby
-    forfile           = File.join %w{.. .. demo forfile } # Get out of tmp/qed first!!!
 
-    readable_file     = File.join forfile, "readable"
-    writable_file     = File.join forfile, "writable"
-    unaccessable_file = File.join forfile, "unaccessable"
+```ruby :example readable
 
     action = nil
     File.if_readable readable_file do | file |
-      file.assert.instance_of? File
-      file.path.assert == readable_file
+      expect( file ).to be_instance_of(File)
+      expect(file.path).to eq(readable_file)
       action = :readable_file
     end
-    action.assert == :readable_file
+    expect( action ).to eq(:readable_file)
 ```
 
 However nothing will happen with an unaccessable file
 
-```ruby
+```ruby :example
+    action = :readable_file
     File.if_readable unaccessable_file do
       action = unexpected!
     end
-    action.assert == :readable_file
+    expect(action).to eq(:readable_file)
 ```
 
 
 ### if\_writable
 
-```ruby
+```ruby :example
 
     action = nil
     File.if_writable writable_file do
       action = :writable_file
     end
-    action.assert == :writable_file
+    expect(action).to eq(:writable_file)
     
 ```
 
 However nothing will happen with an unaccessable or solely readable file
 
-```ruby
+```ruby :example not writable
+    action = :writable_file
     File.if_writable unaccessable_file do
       action = unexpected!
     end
-    action.assert == :writable_file
+    expect(action).to eq(:writable_file)
+```
 
+```ruby :example 
+    action = :writable_file
     File.if_writable readable_file do
       action = unexpected!
     end
-    action.assert == :writable_file
+    expect(action).to eq(:writable_file)
 ```
 
 ### as Enumerator
 
 If no block is provided both methods `if_readable` and `if_writeable` are transformed into an Enumerator.
 
-```ruby
+```ruby :example
     never = File.if_writable readable_file
     once  = File.if_writable writable_file
 
-    never.assert.kind_of? Enumerator
-    once.assert.kind_of? Enumerator
+    expect(never).to be_kind_of(Enumerator)
+    expect(once).to be_kind_of(Enumerator)
 
-    StopIteration.assert.raised? do
-      never.next
-    end
+    expect{ never.next }.to raise_error(StopIteration)
 
-    once.next.assert == writable_file
-    StopIteration.assert.raised? do
-      once.next
-    end
+    expect(once.next).to eq(writable_file)
+    expect{ once.next }.to raise_error(StopIteration)
+
 ```
-
-

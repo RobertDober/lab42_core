@@ -9,8 +9,8 @@ of `lab42_core` only.
 
 Thus we need to require this explicitly:
 
-```ruby
-    require 'lab42/core/fn'
+```ruby :include
+  require 'lab42/core/fn'
 ```
 
 It can be used as with the `#to_proc` kludge, which is a syntactic necessity unless someone
@@ -18,9 +18,8 @@ write _Behavior Aware Code_ ;).
 
 But the main idea is to write _Behavior Aware Code_ BAC(TM).
 
-Example:
 
-```ruby
+```ruby :include
     # BAC:
     class ::Array
       def my_map beh
@@ -31,39 +30,43 @@ Example:
 
 Now use it Luke!
 
-```ruby
+Example: B for behavior
+
+```ruby :example
     require 'lab42/core/b'
-    [*0..9].my_map(B(:+, 2)).assert == [*2..11]
+    expect([*0..9].my_map(B(:+, 2))).to eq([*2..11])
 ```
 
 ### The Difference with fn/fm
 
 The subtle difference can be made clear with an example
 
-```ruby
+Example: B only cares about behavior, not types
+
+```ruby :example
     adder = B( :+ )
     # can be used for Fixnums
-    adder.(1,41) # --> 42
+    expect(adder.(1,41)).to eq(42) # --> 42
     # or Arrays
-    adder.(%w/a b/, %w&c d&) #--> %w%a b c d%
+    expect(adder.(%w/a b/, %w&c d&)).to eq(%w%a b c d%)
 ```
 
 While `Fixnum.fm.+` cannot do that
 
-```ruby
-    TypeError.assert.raised? do
-      Fixnum.fm.+.( [], [] )
-    end
+Example: .fm.+ is type aware
+```ruby :example
+    expect{ Integer.fm.+.([], []) }
+      .to raise_error(TypeError)
 ```
 
 ### Some Behavior
 
-#### Negation
+Example: Negation
 
-```ruby
-  odd = Fixnum.fm.even?.negated
-  odd.(1).assert == true 
-  odd.(2).assert == false
+```ruby :example
+  odd = Integer.fm.even?.negated
+  expect(odd.(1)).to be_truthy
+  expect(odd.(2)).to be_falsy
 ```
 
 The following is available thanx to the aforeused:
@@ -72,10 +75,8 @@ The following is available thanx to the aforeused:
     require 'lab42/core/b'
 ```
 
-#### Identity
+Example: Identity
 
-```ruby
-    Identity.(42).assert == 42
+```ruby :example
+    expect( Identity.(42) ).to eq(42)
 ```
-
-

@@ -13,12 +13,13 @@ Gem::Specification.new do |s|
   s.homepage    = "https://github.com/RobertDober/lab42_core"
   s.licenses    = %w{MIT}
 
-  s.required_ruby_version = '>= 2.3.1'
+  s.required_ruby_version = '>= 2.7.0'
   s.add_dependency 'forwarder2', '~> 0.2'
 
   s.add_development_dependency 'pry', '~> 0.10'
   s.add_development_dependency 'pry-nav', '~> 0.2'
   s.add_development_dependency 'rspec', '~> 3.5'
+  s.add_development_dependency 'speculate_about', '~> 0.2.1'
   s.add_development_dependency 'qed', '~> 2.9'
   s.add_development_dependency 'ae', '~> 1.8'
   # s.add_development_dependency 'lab42_tmux2', '~> 0.0'

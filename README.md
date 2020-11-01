@@ -41,7 +41,7 @@ API will remain the same, require will change to `require 'lab42_more/fn'`
 upon call, once it has been transformed by `#to_proc` 
 
 
-For details see the corresponding [QED demo](https://github.com/RobertDober/lab42_core/blob/master/demo/fn.md).
+For details see the corresponding [Speculations](https://github.com/RobertDober/lab42_core/blob/master/speculations/fn.md).
 
 #### Behave or B for Message Sending
 
@@ -61,7 +61,7 @@ The subtle difference can be made clear with an example
 Which can of course not be accomplished by `Integer.fm.+` 
 
 
-For details see the corresponding [QED demo](https://github.com/RobertDober/lab42_core/blob/master/demo/behave.md).
+For details see the corresponding [Speculations](https://github.com/RobertDober/lab42_core/blob/master/speculations/behave.md).
 
 #### All Behavior is Composable
 
@@ -156,7 +156,7 @@ One could say they are just syntactic sugar for
 One would be correct, but lazy attributes are many (in some of my modules and classes) and have a semantic role often very similar to
 the example above. They are by nature static while methods like the shortest path or fibonacci are highly dynamic.
 
-For details see the corresponding [QED demo](https://github.com/RobertDober/lab42_core/blob/master/demo/memoization.md).
+For details see the corresponding [Speculations](https://github.com/RobertDober/lab42_core/blob/master/speculations/memoization.md).
 
 ##### Gotchas
 
@@ -181,7 +181,7 @@ Can be used after `require 'lab42/core'` or `require 'lab42/core/array'`
       [2, {a: 3}, [4], {a: 5}]
 ```
 
-For details see the corresponding [QED demo](https://github.com/RobertDober/lab42_core/blob/master/demo/array.md).
+For details see the corresponding [Speculations](https://github.com/RobertDober/lab42_core/blob/master/speculations/array.md).
 
 ### Dir
 
@@ -199,7 +199,7 @@ If only the relative or absolute pathes are needed there are the two variations 
     Dir.rel_files ...
 ```
 
-For details see the corresponding [QED demo](https://github.com/RobertDober/lab42_core/blob/master/demo/dir.md).
+For details see the corresponding [Speculations](https://github.com/RobertDober/lab42_core/blob/master/speculations/dir.md).
 
 ### Enumerable
 
@@ -225,7 +225,7 @@ And also `Enumerable#to\_proc` as e.g.
 ```
 
 
-For details see the corresponding [QED demo](https://github.com/RobertDober/lab42_core/blob/master/demo/enumerable.md).
+For details see the corresponding [Speculations](https://github.com/RobertDober/lab42_core/blob/master/speculations/enumerable.md).
 
 ### File
 
@@ -233,7 +233,7 @@ For details see the corresponding [QED demo](https://github.com/RobertDober/lab4
 
 `expand_local_path` to get rid of the `__FILE__` inside `expand_path`.
 
-For details see the corresponding [QED demo](https://github.com/RobertDober/lab42_core/blob/master/demo/file.md).
+For details see the corresponding [Speculations](https://github.com/RobertDober/lab42_core/blob/master/speculations/file.md).
 
 #### #if_readable
 
@@ -265,7 +265,7 @@ For details see the corresponding [QED demo](https://github.com/RobertDober/lab4
 **N.B.** Unlike `Hash#fetch` `Hash#fetch!` will **not** warn you that the block superseeds the default arg if both
 are provided (after all there is a !).
 
-For details see the corresponding [QED demo](https://github.com/RobertDober/lab42_core/blob/master/demo/hash.md).
+For details see the corresponding [Speculations](https://github.com/RobertDober/lab42_core/blob/master/speculations/hash.md).
 
 #### replace_rec
 
@@ -282,7 +282,7 @@ Recursive Replacement
     
 ```
 
-For bulk replacements and how to specify limits, please refer to [QED demo](https://github.com/RobertDober/lab42_core/blob/master/demo/hash.md).
+For bulk replacements and how to specify limits, please refer to [Speculations](https://github.com/RobertDober/lab42_core/blob/master/speculations/hash.md).
 
 #### without
 
@@ -320,7 +320,7 @@ All _modifications_ just return a new instance.
   x.a.assert       ==  42
 ```
 
-For details see the corresponding [QED demo](https://github.com/RobertDober/lab42_core/blob/master/demo/open_object.md).
+For details see the corresponding [Speculations](https://github.com/RobertDober/lab42_core/blob/master/speculations/open_object.md).
 
 ## Tools
 
@@ -331,4 +331,4 @@ Can be used **only** after 'lab42/core/console_tools'.`
 
 **N.B.** Never use in production code or applications. This code is extremly oriented console monkeypatching core classes massively.
 
-This part is documented in [QED Console Tools](https://github.com/RobertDober/lab42_core/blob/master/demo/console_tools.md).
+This part is documented in [QED Console Tools](https://github.com/RobertDober/lab42_core/blob/master/speculations/console_tools.md).
