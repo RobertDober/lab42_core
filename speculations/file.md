@@ -5,11 +5,11 @@
 ### expand\_local\_path
 
 
-Instead of writing e.g. `File.expand_path File.join('..', 'a', 'b'), __FILE__ )` 
-you can write `File.expand_local_path{ %w{a b} }`. 
+Instead of writing e.g. `File.expand_path File.join('..', 'a', 'b'), __FILE__ )`
+you can write `File.expand_local_path{ %w{a b} }`.
 
 Of course if you want to count on the omnipresence of `/` as a file separator, as so many seem to do
-nowadays you can write code like `File.expand_local_path{'a/b'}` 
+nowadays you can write code like `File.expand_local_path{'a/b'}`
 
 ```ruby :example
     expect(File.expand_local_path{ %w{a b} })
@@ -19,13 +19,13 @@ nowadays you can write code like `File.expand_local_path{'a/b'}`
 ### if\_readable
 
 Instead of writing an `if` we can pass a block to the `File.if_readable` method.
-This allows also for functional composition which is not possible with `if` 
+This allows also for functional composition which is not possible with `if`
 
 ```ruby :include
     let(:forfile) { File.join %w{speculations forfile } }
     let(:readable_file) { File.join forfile, "readable"}
     let(:writable_file) { File.join forfile, "writable"}
-    let(:unaccessable_file) { File.join forfile, "unaccessable"}
+    let(:inaccessable_file) { File.join forfile, "inaccessible"}
 ```
 
 
@@ -40,11 +40,11 @@ This allows also for functional composition which is not possible with `if`
     expect( action ).to eq(:readable_file)
 ```
 
-However nothing will happen with an unaccessable file
+However nothing will happen with an inaccessible file
 
 ```ruby :example
     action = :readable_file
-    File.if_readable unaccessable_file do
+    File.if_readable inaccessable_file do
       action = unexpected!
     end
     expect(action).to eq(:readable_file)
@@ -60,20 +60,20 @@ However nothing will happen with an unaccessable file
       action = :writable_file
     end
     expect(action).to eq(:writable_file)
-    
+
 ```
 
-However nothing will happen with an unaccessable or solely readable file
+However nothing will happen with an inaccessible or solely readable file
 
 ```ruby :example not writable
     action = :writable_file
-    File.if_writable unaccessable_file do
+    File.if_writable inaccessable_file do
       action = unexpected!
     end
     expect(action).to eq(:writable_file)
 ```
 
-```ruby :example 
+```ruby :example
     action = :writable_file
     File.if_writable readable_file do
       action = unexpected!
