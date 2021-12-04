@@ -4,6 +4,7 @@
 [![Code Climate](https://codeclimate.com/github/RobertDober/lab42_core/badges/gpa.svg)](https://codeclimate.com/github/RobertDober/lab42_core)
 [![Issue Count](https://codeclimate.com/github/RobertDober/lab42_core/badges/issue_count.svg)](https://codeclimate.com/github/RobertDober/lab42_core)
 [![Test Coverage](https://codeclimate.com/github/RobertDober/lab42_core/badges/coverage.svg)](https://codeclimate.com/github/RobertDober/lab42_core)
+[![Coverage Status](https://coveralls.io/repos/github/RobertDober/lab42_core/badge.svg?branch=master)](https://coveralls.io/github/RobertDober/lab42_core?branch=master)
 [![Gem Version](https://badge.fury.io/rb/lab42_core.svg)](http://badge.fury.io/rb/lab42_core)
 
 Simple Ruby Core Module Extensions (for more see lab42\_more)

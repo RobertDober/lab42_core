@@ -1,6 +1,9 @@
 # This is a basic workflow to help you get started with Actions
-
 name: CI
+
+env:
+  TEST_REPORTER_ID: 84117756512416b47c11b6f148df970f5cb00990c9c26a31f20998cce20dc323
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 # Controls when the workflow will run
 on:
