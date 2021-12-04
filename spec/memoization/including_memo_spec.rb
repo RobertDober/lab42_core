@@ -43,3 +43,4 @@ describe Memo do
   
   
 end # describe Memo
+# SPDX-License-Identifier: Apache-2.0

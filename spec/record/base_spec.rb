@@ -31,3 +31,4 @@ context Kernel.method(:Record) do
     end
   end
 end
+# SPDX-License-Identifier: Apache-2.0

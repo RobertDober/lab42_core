@@ -47,3 +47,4 @@ describe Module do
     end # context 'does not share them between instances'
   end # context 'lazy_attr'
 end # describe Module
+# SPDX-License-Identifier: Apache-2.0

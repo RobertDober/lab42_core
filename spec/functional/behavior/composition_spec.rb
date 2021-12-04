@@ -111,3 +111,4 @@ context Lab42::Behavior do
     end # context "of two Behaviors"
   end # context "Composition"
 end # contsext Lab42::Behavior::Composition
+# SPDX-License-Identifier: Apache-2.0

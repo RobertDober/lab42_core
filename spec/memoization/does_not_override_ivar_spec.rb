@@ -19,3 +19,4 @@ describe Object do
   end
   
 end # describe Object
+# SPDX-License-Identifier: Apache-2.0

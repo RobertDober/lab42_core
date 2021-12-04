@@ -40,3 +40,4 @@ describe Dir do
     end
   end # context '.rel_files with an Array'
 end
+# SPDX-License-Identifier: Apache-2.0

@@ -30,3 +30,4 @@ RSpec.describe Lab42::Core::StateMachine do
   end
 
 end
+# SPDX-License-Identifier: Apache-2.0

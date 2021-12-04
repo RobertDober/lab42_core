@@ -70,3 +70,4 @@ describe Object do
   end # context "unmemoization off parameterized methods"
 end # describe Objet
 
+# SPDX-License-Identifier: Apache-2.0

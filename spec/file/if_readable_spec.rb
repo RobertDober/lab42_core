@@ -54,3 +54,4 @@ describe File do
     
   end # context 'file is not readable'
 end
+# SPDX-License-Identifier: Apache-2.0

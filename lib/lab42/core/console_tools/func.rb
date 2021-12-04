@@ -20,3 +20,4 @@ def f *args
     end
   end
 end
+# SPDX-License-Identifier: Apache-2.0

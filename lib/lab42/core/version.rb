@@ -3,3 +3,4 @@ module Lab42
     VERSION = "0.5.1"
   end # module Core
 end # module Lab42
+# SPDX-License-Identifier: Apache-2.0

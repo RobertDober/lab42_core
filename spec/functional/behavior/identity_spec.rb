@@ -5,3 +5,4 @@ context Lab42::Behavior do
     expect( Identity.( 42 ) ).to eq 42
   end
 end # context Lab42::Behavior
+# SPDX-License-Identifier: Apache-2.0

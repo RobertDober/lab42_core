@@ -8,3 +8,4 @@ module Kernel
   end
 end
 include Kernel
+# SPDX-License-Identifier: Apache-2.0

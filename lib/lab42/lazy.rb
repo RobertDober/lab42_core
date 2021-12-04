@@ -6,3 +6,4 @@ module Lab42
     end
   end # module Lazy
 end # module Lab42
+# SPDX-License-Identifier: Apache-2.0

@@ -48,3 +48,4 @@ module Lab42
     end # module Hash
   end # module Meta
 end # module Lab42
+# SPDX-License-Identifier: Apache-2.0

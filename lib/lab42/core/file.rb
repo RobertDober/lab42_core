@@ -28,3 +28,4 @@ class << File
     File.open path, "a", &blk
   end
 end # class << File
+# SPDX-License-Identifier: Apache-2.0

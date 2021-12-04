@@ -12,3 +12,4 @@ def stub_dir_with_content spec, *content
     end
   }
 end
+# SPDX-License-Identifier: Apache-2.0

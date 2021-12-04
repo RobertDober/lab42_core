@@ -26,3 +26,4 @@ describe Object do
     expect( attr.a? ).to eq 2
   end
 end # describe Object
+# SPDX-License-Identifier: Apache-2.0

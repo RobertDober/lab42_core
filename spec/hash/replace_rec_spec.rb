@@ -73,3 +73,4 @@ RSpec.describe Hash do
     end # context "replace order is outside inside"
   end # context "#replace_rec"
 end
+# SPDX-License-Identifier: Apache-2.0

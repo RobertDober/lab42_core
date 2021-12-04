@@ -42,3 +42,4 @@ class Lab42::Core::StateMachine::Transition
   end
   
 end
+# SPDX-License-Identifier: Apache-2.0

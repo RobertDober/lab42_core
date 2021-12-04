@@ -14,3 +14,4 @@ describe Lab42::Behavior::ProcBehavior do
     
   end # context "Proc#to_behavior"
 end # describe Lab42::Behavior::ProcBehavior
+# SPDX-License-Identifier: Apache-2.0

@@ -31,3 +31,4 @@ describe Lab42::Behavior do
 
   end # context "#negated"
 end # describe Lab42::Behavior
+# SPDX-License-Identifier: Apache-2.0

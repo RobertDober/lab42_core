@@ -20,3 +20,4 @@ describe OpenObject do
     end # context 'each and friends'
   end # context Enumerable
 end
+# SPDX-License-Identifier: Apache-2.0

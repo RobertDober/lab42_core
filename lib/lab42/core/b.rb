@@ -6,3 +6,4 @@ def B msg, *a, &b
 end
 
 Identity = Lab42::Behavior::ProcBehavior.new{ |x| x }
+# SPDX-License-Identifier: Apache-2.0

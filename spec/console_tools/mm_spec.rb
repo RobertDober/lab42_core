@@ -15,3 +15,4 @@ describe Lab42 do
     end # context 'Range'
   end # context 'mm'
 end # describe Lab42
+# SPDX-License-Identifier: Apache-2.0

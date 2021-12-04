@@ -31,3 +31,4 @@ describe Hash do
   end # context '#fetch! result without present keys'
 
 end # describe Hash
+# SPDX-License-Identifier: Apache-2.0

@@ -5,3 +5,4 @@ RSpec.describe Lab42::Meta::Behavior do
     expect( described_class.behavior([].fn.size).() ).to be_zero
   end
 end
+# SPDX-License-Identifier: Apache-2.0

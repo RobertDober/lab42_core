@@ -53,3 +53,4 @@ class Hash
     end
   end
 end # class Hash
+# SPDX-License-Identifier: Apache-2.0

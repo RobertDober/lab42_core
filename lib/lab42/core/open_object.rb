@@ -58,3 +58,4 @@ class Hash
     OpenObject.new **self
   end
 end
+# SPDX-License-Identifier: Apache-2.0

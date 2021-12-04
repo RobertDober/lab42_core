@@ -29,3 +29,4 @@ module Lab42
     include Composition
   end # class Behavior
 end # module Lab42
+# SPDX-License-Identifier: Apache-2.0

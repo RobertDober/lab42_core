@@ -12,3 +12,4 @@ module Lab42
     require_relative './core/memoization'
   end
 end
+# SPDX-License-Identifier: Apache-2.0

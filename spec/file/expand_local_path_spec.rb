@@ -26,3 +26,4 @@ describe File do
 
   end # context 'expand_local_path'
 end
+# SPDX-License-Identifier: Apache-2.0

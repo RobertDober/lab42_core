@@ -44,3 +44,4 @@ describe Dir do
     end
   end # context '.abs_files with an Array'
 end
+# SPDX-License-Identifier: Apache-2.0

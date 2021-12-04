@@ -55,3 +55,4 @@ describe File do
   end # context 'file is not writable'
 
 end
+# SPDX-License-Identifier: Apache-2.0

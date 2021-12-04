@@ -23,3 +23,4 @@ describe Lab42 do
   
 end # describe Lab42
 
+# SPDX-License-Identifier: Apache-2.0

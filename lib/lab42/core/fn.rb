@@ -11,3 +11,4 @@ class Module
     Lab42::Behavior::Proxy.new self, fm: true
   end
 end
+# SPDX-License-Identifier: Apache-2.0

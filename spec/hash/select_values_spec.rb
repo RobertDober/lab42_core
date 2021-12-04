@@ -15,3 +15,4 @@ RSpec.describe Hash do
     end
   end # context "#reject_values"
 end
+# SPDX-License-Identifier: Apache-2.0

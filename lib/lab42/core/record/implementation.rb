@@ -13,3 +13,4 @@ class Lab42::Core::RecordImplementation
     end
   end
 end
+# SPDX-License-Identifier: Apache-2.0

@@ -27,3 +27,4 @@ module Lab42::Core::StateMachine::ClassMethods
     @__handlers__ ||= Hash.new{ |h, k| h[k] = [] }
   end
 end
+# SPDX-License-Identifier: Apache-2.0

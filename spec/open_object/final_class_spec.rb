@@ -8,3 +8,4 @@ describe OpenObject do
     it{ expect( ->{ Class.new( subject )} ).to raise_error( RuntimeError, %r{I prefer delegation} ) }
   end
 end
+# SPDX-License-Identifier: Apache-2.0

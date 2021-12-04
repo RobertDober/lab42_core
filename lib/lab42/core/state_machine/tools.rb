@@ -29,3 +29,4 @@ module Lab42::Core::StateMachine::Tools extend self
   end
   
 end
+# SPDX-License-Identifier: Apache-2.0

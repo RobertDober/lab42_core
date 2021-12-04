@@ -32,3 +32,4 @@ describe Dir do
 
   end # context ".file with callables "
 end
+# SPDX-License-Identifier: Apache-2.0

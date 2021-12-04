@@ -38,3 +38,4 @@ describe OpenObject do
     
   end # context 'Hashy behavior'
 end 
+# SPDX-License-Identifier: Apache-2.0

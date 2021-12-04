@@ -56,3 +56,4 @@ describe Enumerable do
     end # context "partitions"
   end # context "#grep2"
 end
+# SPDX-License-Identifier: Apache-2.0

@@ -84,3 +84,4 @@ describe Object do
     # end # context 'debugging demos'
   end # context 'Object#fn'
 end # describe 'Functional'
+# SPDX-License-Identifier: Apache-2.0

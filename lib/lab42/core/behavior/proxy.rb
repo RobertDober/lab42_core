@@ -22,3 +22,4 @@ module Lab42
     end # class Proxy
   end # module Behavior
 end # module Lab42
+# SPDX-License-Identifier: Apache-2.0

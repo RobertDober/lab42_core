@@ -28,3 +28,4 @@ describe OpenObject do
     end # context "some args"
   end # context ".merging"
 end # describe OpenObject
+# SPDX-License-Identifier: Apache-2.0

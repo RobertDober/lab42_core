@@ -10,3 +10,4 @@ class Array
     end
   end
 end # class Array
+# SPDX-License-Identifier: Apache-2.0

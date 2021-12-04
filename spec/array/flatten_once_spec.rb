@@ -22,3 +22,4 @@ describe Array do
     end
   end # context 'flatten_once'
 end
+# SPDX-License-Identifier: Apache-2.0

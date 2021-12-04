@@ -32,3 +32,4 @@ describe Hash do
     end # context "non empty"
   end # context '#with_present'
 end
+# SPDX-License-Identifier: Apache-2.0

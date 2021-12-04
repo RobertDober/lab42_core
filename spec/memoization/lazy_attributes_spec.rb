@@ -34,3 +34,4 @@ describe Module do
 
   end # context 'lazy attributes work like attributes with initial values'
 end # describe Module
+# SPDX-License-Identifier: Apache-2.0

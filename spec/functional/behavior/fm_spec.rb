@@ -56,3 +56,4 @@ describe Module do
     end # context 'behavior'
   end # context '#fm'
 end # describe Module
+# SPDX-License-Identifier: Apache-2.0

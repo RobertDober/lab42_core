@@ -65,3 +65,4 @@ describe Object do
   end # context 'memoized, one param inline'
 
 end
+# SPDX-License-Identifier: Apache-2.0

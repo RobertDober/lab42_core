@@ -43,3 +43,4 @@ describe Module do
   end # context 'memoized, parameterless methods'
 
 end # describe Module
+# SPDX-License-Identifier: Apache-2.0

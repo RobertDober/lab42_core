@@ -51,3 +51,4 @@ describe Enumerable do
     it_behaves_like 'a digit yielder'
   end # context Enumerator
 end
+# SPDX-License-Identifier: Apache-2.0
