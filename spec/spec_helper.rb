@@ -1,4 +1,3 @@
-
 require 'simplecov'
 SimpleCov.start
 
@@ -18,6 +17,4 @@ RSpec.configure do |c|
     # (e.g. via a command-line flag).
     c.default_formatter = "doc"
   end
-
 end
-

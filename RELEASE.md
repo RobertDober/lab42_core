@@ -1,8 +1,12 @@
 # 0.5.2 202?-??-??
 
+* Test Coverage Report
+
 * Require Ruby >= 3.0.0 now
 
 * Changed CI to GHA
+
+* Changed License to Apache 2.0
 
 # 0.4.0 202?-??-??
 

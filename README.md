@@ -20,7 +20,7 @@ Can be used after `require 'lab42/core/fn'` **only**.
 
 Might be moved into gem [lab42\_more](https://github.com/RobertDober/lab42_more) in the future .
 
-API will remain the same, require will change to `require 'lab42_more/fn'` 
+API will remain the same, require will change to `require 'lab42_more/fn'`
 
 ##### fn like function
 
@@ -29,7 +29,7 @@ API will remain the same, require will change to `require 'lab42_more/fn'`
 
     Dir.files( %w{.. assets ** *.txt} ).sort_by &File.fn.mtime
 ```
-  
+
 ##### fm like function/method
 
 ```ruby
@@ -37,7 +37,7 @@ API will remain the same, require will change to `require 'lab42_more/fn'`
 ```
 
 **N.B.** This only works because the object behind the scenes of `Class#fm` knows how to bind
-upon call, once it has been transformed by `#to_proc` 
+upon call, once it has been transformed by `#to_proc`
 
 
 For details see the corresponding [Speculations](https://github.com/RobertDober/lab42_core/blob/master/speculations/fn.md).
@@ -57,14 +57,14 @@ The subtle difference can be made clear with an example
     adder.(%w/a b/, %w&c d&) #--> %w%a b c d%
 ```
 
-Which can of course not be accomplished by `Integer.fm.+` 
+Which can of course not be accomplished by `Integer.fm.+`
 
 
 For details see the corresponding [Speculations](https://github.com/RobertDober/lab42_core/blob/master/speculations/behave.md).
 
 #### All Behavior is Composable
 
-The above methods all return instances of `Behavior` and `Behavor` has a much richer API than Ruby's core _callables_ like `Proc` or `Method` 
+The above methods all return instances of `Behavior` and `Behavor` has a much richer API than Ruby's core _callables_ like `Proc` or `Method`
 
 #### Memoization and Lazy Attributes
 
@@ -91,7 +91,7 @@ However the general case would read like this
 
 ```ruby
     def f n, cache = {}
-      args_hash = some_hash_fn n  # n is all args here 
+      args_hash = some_hash_fn n  # n is all args here
       return cache[args_hash] if cache[args_hash]
       cache[args_hash] = f_implemenetation( some_fn(n), cache )
     end
@@ -133,7 +133,7 @@ two different syntaxes
     def f ...
     end
     memoize :f
-    
+
 ```
 
 ##### Lazy Attributes
@@ -169,7 +169,7 @@ Do not call memoized methods with arguments that cannot be used as Hash keys lik
 
 ### Array
 
-Can be used after `require 'lab42/core'` or `require 'lab42/core/array'`  
+Can be used after `require 'lab42/core'` or `require 'lab42/core/array'`
 
 #### #flatten\_once
 
@@ -184,7 +184,7 @@ For details see the corresponding [Speculations](https://github.com/RobertDober/
 
 ### Dir
 
-Can be used after `require 'lab42/core'` or `require 'lab42/core/dir'`  
+Can be used after `require 'lab42/core'` or `require 'lab42/core/dir'`
 
 ```ruby
   Dir.files "**/*" do | partial_path, full_path |
@@ -238,7 +238,7 @@ For details see the corresponding [Speculations](https://github.com/RobertDober/
 
 ```ruby
     File.if_readable 'some_file' do | file |  # openes file as readable
-      
+
     end
 ```
 
@@ -278,7 +278,7 @@ Recursive Replacement
     b = a.replace_rec( :a, &:succ )
     a.assert == {a: 42, x: {a: 43}}
     b.assert == {a: 43, x: {a: 44}}
-    
+
 ```
 
 For bulk replacements and how to specify limits, please refer to [Speculations](https://github.com/RobertDober/lab42_core/blob/master/speculations/hash.md).
@@ -287,7 +287,7 @@ For bulk replacements and how to specify limits, please refer to [Speculations](
 
 ```ruby
     h = {a: 1, b: 2, c: 3}
-  
+
     h.without( :b, :c, :d ).assert == {a: 1}
     h.assert == {a: 1, b: 2, c: 3}
 ```
@@ -331,3 +331,17 @@ Can be used **only** after 'lab42/core/console_tools'.`
 **N.B.** Never use in production code or applications. This code is extremly oriented console monkeypatching core classes massively.
 
 This part is documented in [QED Console Tools](https://github.com/RobertDober/lab42_core/blob/master/speculations/console_tools.md).
+
+
+## Author
+
+Copyright © 2020,1 Robert Dober
+robert.dober@gmail.com
+
+## LICENSE
+
+This software is licensed under Apache License v2.0. Please refer to [LICENSE](LICENSE) for details.
+
+Versions strictly less to 0.5.2 of the Software can still be used under the MIT license.
+
+<!-- SPDX-License-Identifier: Apache-2.0 -->

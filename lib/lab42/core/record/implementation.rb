@@ -12,5 +12,4 @@ class Lab42::Core::RecordImplementation
       instance_variable_set "@#{key}", val
     end
   end
-  
 end
