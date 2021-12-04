@@ -1,7 +1,6 @@
 # lab42\_core
 
-
-[![Build Status](https://travis-ci.org/RobertDober/lab42_core.svg?branch=master)](https://travis-ci.org/RobertDober/lab42_core)
+[![CI](https://github.com/RobertDober/lab42_core/actions/workflows/main.yml/badge.svg)](https://github.com/RobertDober/lab42_core/actions/workflows/main.yml)
 [![Code Climate](https://codeclimate.com/github/RobertDober/lab42_core/badges/gpa.svg)](https://codeclimate.com/github/RobertDober/lab42_core)
 [![Issue Count](https://codeclimate.com/github/RobertDober/lab42_core/badges/issue_count.svg)](https://codeclimate.com/github/RobertDober/lab42_core)
 [![Test Coverage](https://codeclimate.com/github/RobertDober/lab42_core/badges/coverage.svg)](https://codeclimate.com/github/RobertDober/lab42_core)
